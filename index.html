@@ -1,0 +1,2483 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- SEO and Dynamic Open Graph Tags -->
+    <title>Bata Gsm Online - Secure Marketplace</title>
+    <meta name="description" content="Bata GSM Online - The first online GSM marketplace in Nigeria founded by Daha Nura Saluhu. Buy and sell phones, accessories, and repair parts in Kano securely.">
+    <meta name="author" content="Daha Nura Saluhu">
+    <link rel="canonical" href="https://www.batagsm.com.ng" id="canonical-url">
+    
+    <!-- Open Graph for Facebook/WhatsApp/Telegram -->
+    <meta property="og:title" content="Bata Gsm Online - Secure Marketplace" id="og-title">
+    <meta property="og:description" content="Advertise with trust, buy with ease. Buy and sell phones, electronics, and accessories." id="og-description">
+    <meta property="og:image" content="https://placehold.co/512x512/16a34a/ffffff?text=B" id="og-image">
+    <meta property="og:url" content="https://www.batagsm.com.ng" id="og-url">
+    <meta property="og:type" content="website">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Bata Gsm Online" id="twitter-title">
+    <meta name="twitter:description" content="Advertise with trust, buy with ease." id="twitter-description">
+    <meta name="twitter:image" content="https://placehold.co/512x512/16a34a/ffffff?text=B" id="twitter-image">
+
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#16a34a">
+    
+    <!-- Dynamic Schema Container -->
+    <script type="application/ld+json" id="org-schema">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Bata GSM Online",
+      "url": "https://www.batagsm.com.ng",
+      "logo": "https://placehold.co/512x512/16a34a/ffffff?text=B",
+      "founder": {
+        "@type": "Person",
+        "name": "Daha Nura Saluhu",
+        "jobTitle": "Founder & CEO",
+        "nationality": "Nigerian",
+        "url": "https://www.batagsm.com.ng"
+      },
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Kano",
+        "addressCountry": "NG"
+      },
+      "description": "The first specialized GSM online marketplace in Nigeria connecting buyers and vendors for phones and accessories."
+    }
+    </script>
+    <script type="application/ld+json" id="product-schema"></script>
+    <script type="application/ld+json" id="breadcrumb-schema"></script>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Readex+Pro:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+
+    <style>
+        body { 
+            font-family: 'Readex Pro', sans-serif; 
+            background-color: #f1f5f9; 
+        }
+
+        .hidden { display: none; }
+
+        .star-rating span { color: #facc15; } 
+
+        .deal-of-the-week-banner { 
+            background: linear-gradient(45deg, #16a34a, #22c55e); 
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.2); 
+        }
+
+        .verified-badge { 
+            color: #f59e0b; 
+            font-size: 1.1em; 
+            display: inline-block; 
+            margin-left: 4px; 
+            font-weight: bold; 
+        }
+
+        #filter-modal-content { max-height: 70vh; overflow-y: auto; }
+
+        .favorite-btn.favorited svg { fill: #ef4444; color: #ef4444; }
+        .favorite-btn svg { color: #9ca3af; transition: color 0.2s, fill 0.2s; }
+
+        /* --- SKELETON LOADING STYLES --- */
+        .skeleton {
+            background-color: #e2e8f0;
+            position: relative;
+            overflow: hidden;
+            border-radius: 0.5rem;
+        }
+        
+        .skeleton::after {
+            content: "";
+            position: absolute;
+            top: 0; right: 0; bottom: 0; left: 0;
+            transform: translateX(-100%);
+            background-image: linear-gradient(
+                90deg,
+                rgba(255, 255, 255, 0) 0,
+                rgba(255, 255, 255, 0.4) 20%,
+                rgba(255, 255, 255, 0.7) 60%,
+                rgba(255, 255, 255, 0)
+            );
+            animation: shimmer 1.5s infinite;
+        }
+
+        @keyframes shimmer { 100% { transform: translateX(100%); } }
+
+        .skeleton-text { height: 1rem; margin-bottom: 0.5rem; }
+        .skeleton-img { width: 100%; height: 100%; }
+        
+        .rating-input { display: flex; flex-direction: row-reverse; justify-content: flex-end; }
+        .rating-input input { display: none; }
+        .rating-input label { font-size: 2rem; color: #cbd5e1; cursor: pointer; transition: color 0.2s; padding: 0 0.1em; }
+        
+        .rating-input input:checked ~ label, 
+        .rating-input label:hover, 
+        .rating-input label:hover ~ label { color: #facc15; }
+        
+        .mic-listening { color: #ef4444 !important; animation: pulse-red 1.5s infinite; }
+        
+        @keyframes pulse-red {
+            0% { transform: translateY(-50%) scale(1); box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7); }
+            70% { transform: translateY(-50%) scale(1.1); box-shadow: 0 0 0 10px rgba(239, 68, 68, 0); }
+            100% { transform: translateY(-50%) scale(1); box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); }
+        }
+
+        @media (max-width: 640px) {
+            #category-nav { justify-content: flex-start; -ms-overflow-style: none; scrollbar-width: none; }
+            #category-nav::-webkit-scrollbar { display: none; }
+        }
+        
+        #loading-indicator {
+            position: fixed; top: 0; left: 0; right: 0; bottom: 0; background-color: #ffffff;
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            z-index: 9999; opacity: 1; transition: opacity 0.8s ease-out, visibility 0.8s;
+        }
+        
+        #loading-indicator.fade-out { opacity: 0; visibility: hidden; pointer-events: none; }
+        
+        .loader-ring { display: inline-block; position: relative; width: 64px; height: 64px; margin-top: 20px; }
+        
+        .loader-ring div {
+            box-sizing: border-box; display: block; position: absolute; width: 50px; height: 50px; margin: 8px;
+            border: 6px solid #16a34a; border-radius: 50%; animation: loader-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+            border-color: #16a34a transparent transparent transparent;
+        }
+        
+        .loader-ring div:nth-child(1) { animation-delay: -0.45s; }
+        .loader-ring div:nth-child(2) { animation-delay: -0.3s; }
+        .loader-ring div:nth-child(3) { animation-delay: -0.15s; }
+        
+        @keyframes loader-ring { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        
+        .loading-text { margin-top: 15px; font-size: 0.9rem; color: #64748b; letter-spacing: 0.1em; text-transform: uppercase; animation: fade-text 1.5s infinite; }
+        
+        @keyframes fade-text { 0%, 100% { opacity: 0.6; } 50% { opacity: 1; } }
+
+        .auth-input { letter-spacing: 0.05em; font-size: 1rem; }
+        
+        .founder-badge {
+            background: linear-gradient(90deg, #16a34a 0%, #0d9488 100%);
+            color: white; padding: 4px 12px; border-radius: 99px; font-size: 0.75rem;
+            font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; display: inline-block; margin-bottom: 0.5rem;
+        }
+
+        /* --- STICKY BUTTONS --- */
+        .sticky-action-bar {
+            position: fixed; bottom: 0; left: 0; right: 0;
+            background: white; padding: 12px; box-shadow: 0 -4px 12px rgba(0,0,0,0.1);
+            z-index: 50; display: flex; gap: 10px; align-items: center; justify-content: space-between;
+            transform: translateY(100%); transition: transform 0.3s ease-in-out;
+        }
+        .sticky-action-bar.visible { transform: translateY(0); }
+    </style>
+</head>
+<body class="bg-slate-100 text-slate-800 flex flex-col min-h-screen">
+
+    <div id="loading-indicator">
+         <div class="flex flex-col items-center justify-center mb-2">
+             <svg width="110" height="110" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg" class="mb-2">
+                <circle cx="256" cy="256" r="256" fill="#16a34a"/>
+                <rect x="156" y="106" width="200" height="300" rx="30" fill="white"/>
+                <rect x="170" y="140" width="172" height="220" fill="#f0fdf4"/>
+                <path d="M220 280H210V180H250C280 180 290 190 290 210C290 225 280 230 270 230C285 235 295 245 295 260C295 280 280 280 250 280H220Z" fill="#16a34a" stroke="#16a34a" stroke-width="15"/>
+                <rect x="236" y="120" width="40" height="6" rx="3" fill="#16a34a"/>
+                <circle cx="256" cy="370" r="15" stroke="#16a34a" stroke-width="4" fill="none"/>
+                <path d="M380 256 L420 256" stroke="white" stroke-width="10" stroke-linecap="round"/>
+                <path d="M390 290 L440 290" stroke="white" stroke-width="10" stroke-linecap="round"/>
+                <path d="M370 222 L410 222" stroke="white" stroke-width="10" stroke-linecap="round"/>
+             </svg>
+             <h1 class="loader-logo text-3xl sm:text-4xl font-extrabold tracking-tight mt-2 text-center">
+                 <span class="bg-gradient-to-r from-green-700 to-emerald-500 bg-clip-text text-transparent">Bata Gsm</span>
+                 <span class="bg-gradient-to-r from-yellow-400 to-orange-500 bg-clip-text text-transparent ml-1">Online</span>
+             </h1>
+         </div>
+         <div class="loader-ring mt-4"><div></div><div></div><div></div><div></div></div>
+         <p class="loading-text mt-2">loading...</p>
+     </div>
+
+     <!-- PWA INSTALL PROMPT -->
+     <div id="pwa-install-prompt" class="hidden fixed bottom-4 left-4 right-4 bg-white p-5 rounded-2xl shadow-2xl z-[200] border border-green-200">
+         <div class="flex justify-between items-start mb-3">
+             <div class="flex gap-3 items-center">
+                <div class="bg-green-100 p-2 rounded-full text-green-700">
+                    <i data-lucide="smartphone" class="w-6 h-6"></i>
+                </div>
+                <div>
+                    <h3 class="font-bold text-slate-800" data-key="pwa_title">Install Bata GSM Online</h3>
+                    <p class="text-xs text-slate-500" data-key="pwa_desc">Fast • Secure • Works Offline</p>
+                </div>
+             </div>
+             <button id="close-pwa-btn" class="text-slate-400 hover:text-slate-700"><i data-lucide="x" class="w-5 h-5"></i></button>
+         </div>
+         <button id="install-pwa-btn" class="w-full bg-green-600 text-white font-bold py-2 rounded-lg shadow-md hover:bg-green-700 transition" data-key="pwa_install_btn">Add to Home Screen</button>
+     </div>
+
+    <div id="mobile-menu-overlay" class="hidden fixed inset-0 bg-black bg-opacity-50 z-[100] flex justify-start">
+        <div class="bg-white w-64 h-full shadow-xl p-5 transform transition-transform duration-300">
+            <div class="flex justify-between items-center mb-8 border-b pb-4">
+                <h2 class="text-xl font-bold text-green-700">Menu</h2>
+                <button id="close-menu-btn" class="text-gray-500 hover:text-red-500"><i data-lucide="x" class="w-6 h-6"></i></button>
+            </div>
+            <nav class="space-y-4">
+                <button onclick="window.showHomePage(); document.getElementById('mobile-menu-overlay').classList.add('hidden')" class="flex items-center space-x-3 text-gray-700 w-full p-2 hover:bg-green-50 rounded-lg">
+                    <i data-lucide="home" class="w-5 h-5"></i><span data-key="nav_home">Home</span>
+                </button>
+                <button onclick="window.showAboutPage(); document.getElementById('mobile-menu-overlay').classList.add('hidden')" class="flex items-center space-x-3 text-gray-700 w-full p-2 hover:bg-green-50 rounded-lg">
+                    <i data-lucide="info" class="w-5 h-5"></i><span data-key="nav_about">About Us</span>
+                </button>
+                <button onclick="window.showContactPage(); document.getElementById('mobile-menu-overlay').classList.add('hidden')" class="flex items-center space-x-3 text-gray-700 w-full p-2 hover:bg-green-50 rounded-lg">
+                    <i data-lucide="phone" class="w-5 h-5"></i><span data-key="nav_contact">Contact Us</span>
+                </button>
+                <hr class="border-gray-200">
+                <button onclick="window.showPrivacyPage(); document.getElementById('mobile-menu-overlay').classList.add('hidden')" class="flex items-center space-x-3 text-gray-700 w-full p-2 hover:bg-green-50 rounded-lg">
+                    <i data-lucide="shield" class="w-5 h-5"></i><span data-key="policy_title">Order & Security</span>
+                </button>
+                <button onclick="window.showTermsPage(); document.getElementById('mobile-menu-overlay').classList.add('hidden')" class="flex items-center space-x-3 text-gray-700 w-full p-2 hover:bg-green-50 rounded-lg">
+                    <i data-lucide="file-text" class="w-5 h-5"></i><span data-key="terms_title">Terms & Conditions</span>
+                </button>
+                <button id="menu-admin-btn" class="flex items-center space-x-3 text-gray-700 w-full p-2 hover:bg-green-50 rounded-lg hidden">
+                    <i data-lucide="lock" class="w-5 h-5"></i><span>Admin Login</span>
+                </button>
+            </nav>
+            <div class="absolute bottom-5 left-5 right-5 text-center text-xs text-gray-400">
+                &copy; 2026 Bata GSM
+            </div>
+        </div>
+    </div>
+
+    <header class="bg-white shadow-md sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center gap-3">
+                    <button id="open-menu-btn" class="text-gray-600 hover:text-green-700">
+                        <i data-lucide="menu" class="w-6 h-6"></i>
+                    </button>
+                    <div id="logo" class="flex items-center cursor-pointer group select-none">
+                        <div class="w-1.5 h-8 bg-yellow-400 rounded-r mr-2 group-hover:bg-yellow-500 transition-colors"></div>
+                        <h1 class="text-xl sm:text-2xl font-extrabold tracking-tight">
+                            <span class="bg-gradient-to-r from-green-700 to-emerald-600 bg-clip-text text-transparent">Bata Gsm</span>
+                            <span class="bg-gradient-to-r from-yellow-500 to-orange-500 bg-clip-text text-transparent font-bold ml-1 text-lg sm:text-xl">Online</span>
+                        </h1>
+                    </div>
+                </div>
+                
+                <div class="flex items-center space-x-2 sm:space-x-3">
+                    <button id="cart-nav-button" title="Cart" class="text-gray-500 hover:text-green-600 relative p-1">
+                        <i data-lucide="shopping-cart" class="w-5 h-5 sm:w-6 sm:h-6"></i>
+                        <span id="cart-count" class="hidden absolute -top-1 -right-1 bg-green-600 text-white text-[10px] font-bold rounded-full h-4 w-4 flex items-center justify-center">0</span>
+                    </button>
+                    <button id="favorites-nav-button" title="Favorites" class="text-gray-500 hover:text-red-500 relative p-1">
+                        <i data-lucide="heart" class="w-5 h-5 sm:w-6 sm:h-6"></i>
+                        <span id="fav-count" class="hidden absolute -top-1 -right-1 bg-red-500 text-white text-[10px] font-bold rounded-full h-4 w-4 flex items-center justify-center">0</span>
+                    </button>
+                    <button id="lang-switcher" class="text-xs sm:text-sm font-bold py-1 px-2 border-2 border-green-600 text-green-600 rounded-md">HA</button>
+                </div>
+            </div>
+             <p class="text-xs sm:text-sm text-gray-500 mt-1 pl-10" data-key="slogan">Advertise with trust, buy with ease.</p>
+        </div>
+        
+        <nav class="bg-slate-50 border-t border-b border-slate-200">
+            <div id="category-nav" class="container mx-auto px-4 py-2 flex justify-start sm:justify-center space-x-2 overflow-x-auto whitespace-nowrap">
+                <button class="category-btn bg-green-600 text-white px-3 py-1 rounded-full text-xs sm:text-sm font-semibold shadow" data-category="Duka" data-key="cat_all">All</button>
+                <button class="category-btn bg-white text-gray-700 px-3 py-1 rounded-full text-xs sm:text-sm font-semibold border border-slate-200" data-category="Wayoyi" data-key="cat_phones">Phones</button>
+                <button class="category-btn bg-white text-gray-700 px-3 py-1 rounded-full text-xs sm:text-sm font-semibold border border-slate-200" data-category="Accessories" data-key="cat_accessories_main">Accessories</button>
+                <button class="category-btn bg-white text-gray-700 px-3 py-1 rounded-full text-xs sm:text-sm font-semibold border border-slate-200" data-category="Electronics" data-key="cat_electronics">Electronics</button>
+                <button class="category-btn bg-white text-gray-700 px-3 py-1 rounded-full text-xs sm:text-sm font-semibold border border-slate-200" data-category="Kayan Gyara" data-key="cat_parts">Repair Parts</button>
+                <button class="category-btn bg-white text-gray-700 px-3 py-1 rounded-full text-xs sm:text-sm font-semibold border border-slate-200" data-category="Kayan Sari" data-key="cat_wholesale">Wholesale</button>
+                <button class="category-btn bg-white text-gray-700 px-3 py-1 rounded-full text-xs sm:text-sm font-semibold border border-slate-200" data-category="Trending" data-key="cat_trending">Trending</button>
+                <button class="category-btn bg-white text-gray-700 px-3 py-1 rounded-full text-xs sm:text-sm font-semibold border border-slate-200" data-category="Popular" data-key="cat_popular">Popular</button>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container mx-auto p-4 flex-grow relative">
+        <div id="connection-status" class="mb-4 text-center text-xs text-red-600 hidden p-2 bg-red-100 rounded-md border border-red-300" data-key="offline_mode">
+            Connection lost. Operating in offline mode...
+        </div>
+        
+        <div id="home-page">
+            <div class="flex space-x-2 mb-6">
+                <div class="relative w-full">
+                    <input type="text" id="search-bar" data-key="search_placeholder" placeholder="Search across all categories..." class="w-full pl-4 pr-10 py-2 sm:py-3 bg-white border border-slate-300 rounded-lg shadow-sm text-sm focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500 transition-shadow">
+                    <button id="voice-search-btn" class="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-green-600 focus:outline-none">
+                        <i data-lucide="mic" class="w-5 h-5"></i>
+                    </button>
+                </div>
+                <button id="filter-btn" title="Filter" class="bg-green-600 text-white px-3 sm:px-4 py-2 sm:py-3 rounded-lg shadow-sm hover:bg-green-700 transition duration-150">
+                    <i data-lucide="filter" class="w-4 h-4 sm:w-5 sm:h-5"></i>
+                </button>
+            </div>
+            
+            <div id="deal-of-the-week-section" class="mb-8 hidden">
+                 <h2 class="text-xl sm:text-2xl font-bold mb-3 text-slate-800" data-key="deal_of_the_week_title">Deal of the Week</h2>
+                 <div id="deal-of-the-week-product"></div>
+            </div>
+
+            <div id="recently-viewed-section" class="mb-8 hidden">
+                <h2 class="text-lg sm:text-xl font-semibold mb-3 text-slate-800" data-key="recently_viewed_title">Recently Viewed</h2>
+                <div id="recently-viewed-products" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 sm:gap-4"></div>
+            </div>
+
+            <div id="featured-section-wrapper" class="mb-8">
+                <h2 class="text-lg sm:text-xl font-semibold mb-3 text-slate-800" data-key="featured_title">Featured Products</h2>
+                <div id="featured-products" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 sm:gap-4"></div>
+            </div>
+
+            <div id="latest-section-wrapper">
+                <h2 class="text-lg sm:text-xl font-semibold mb-3 text-slate-800" data-key="latest_title">Latest Products</h2>
+                <div id="latest-products" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 sm:gap-4"></div>
+            </div>
+             <div id="empty-state" class="text-center p-8 text-slate-500 hidden mt-8 bg-white rounded-lg shadow">
+                 <i data-lucide="search-x" class="w-12 h-12 sm:w-16 sm:h-16 mx-auto text-slate-400 mb-4"></i>
+                <p class="text-base sm:text-lg font-semibold" data-key="no_products_found">No products matched your search.</p>
+                <p class="text-xs sm:text-sm mt-1" data-key="try_different_search">Try a different search or adjust filters.</p>
+            </div>
+        </div>
+        
+        <div id="about-page" class="hidden bg-white rounded-lg shadow p-6 max-w-3xl mx-auto space-y-8">
+             <button onclick="window.showHomePage()" class="mb-4 text-green-700 font-semibold flex items-center space-x-1 hover:underline">
+                <i data-lucide="arrow-left" class="w-4 h-4"></i><span data-key="back_home">Back Home</span>
+            </button>
+            
+            <div class="text-center mb-8 border-b pb-6 border-gray-100">
+                <div class="w-24 h-24 bg-gradient-to-br from-green-100 to-green-50 rounded-full flex items-center justify-center mx-auto mb-4 shadow-sm">
+                     <i data-lucide="smartphone" class="w-10 h-10 text-green-600"></i>
+                </div>
+                <h2 class="text-3xl font-extrabold text-green-800 tracking-tight">Bata GSM</h2>
+                <p class="text-yellow-500 font-bold text-xl">Online</p>
+                <p class="mt-2 text-gray-500 text-sm italic" data-key="slogan">Advertise with trust, buy with ease.</p>
+            </div>
+
+            <div class="bg-white">
+                <h3 class="font-bold text-gray-800 text-xl mb-3 flex items-center gap-2">
+                    <i data-lucide="info" class="text-green-600 w-6 h-6"></i>
+                    <span data-key="about_us_header">Who We Are</span>
+                </h3>
+                <p class="text-gray-600 text-base leading-relaxed" data-key="about_us_content">
+                    Bata GSM Online is a platform connecting buyers and sellers of quality phones and accessories in Kano. We work with major vendors from Bello Road, Farm Center, and other major GSM markets to ensure customers get genuine products with safety and trust. Our goal is to make buying phones easy, simple, and scam-free.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="bg-green-50 p-6 rounded-xl border border-green-100 shadow-sm">
+                    <h3 class="font-bold text-gray-800 text-lg mb-3 flex items-center gap-2">
+                        <div class="bg-white p-1.5 rounded-full shadow-sm"><i data-lucide="target" class="text-green-600 w-5 h-5"></i></div>
+                        <span data-key="mission_header">Our Mission</span>
+                    </h3>
+                    <p class="text-gray-600 text-sm leading-relaxed" data-key="mission_content">
+                        We want to ensure that buying a phone is easy, safe, and affordable for everyone. We eliminate the risk of scams by providing a trusted platform people can rely on.
+                    </p>
+                </div>
+                <div class="bg-yellow-50 p-6 rounded-xl border border-yellow-100 shadow-sm">
+                    <h3 class="font-bold text-gray-800 text-lg mb-3 flex items-center gap-2">
+                        <div class="bg-white p-1.5 rounded-full shadow-sm"><i data-lucide="eye" class="text-yellow-600 w-5 h-5"></i></div>
+                        <span data-key="vision_header">Our Vision</span>
+                    </h3>
+                    <p class="text-gray-600 text-sm leading-relaxed" data-key="vision_content">
+                        To become the most trusted GSM marketplace in Northern Nigeria, full of honesty, trust, and technology.
+                    </p>
+                </div>
+            </div>
+
+            <div class="bg-white border border-gray-100 p-6 rounded-xl shadow-sm">
+                <h3 class="font-bold text-gray-800 text-xl mb-5 flex items-center gap-2">
+                    <i data-lucide="thumbs-up" class="text-green-600 w-6 h-6"></i>
+                    <span data-key="why_choose_header">Why Choose Bata GSM?</span>
+                </h3>
+                <ul class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm text-gray-600">
+                    <li class="flex items-center gap-3"><i data-lucide="check-circle" class="w-5 h-5 text-green-500 flex-shrink-0"></i> <span data-key="choose_1">Verified Vendors</span></li>
+                    <li class="flex items-center gap-3"><i data-lucide="check-circle" class="w-5 h-5 text-green-500 flex-shrink-0"></i> <span data-key="choose_2">Genuine Products</span></li>
+                    <li class="flex items-center gap-3"><i data-lucide="check-circle" class="w-5 h-5 text-green-500 flex-shrink-0"></i> <span data-key="choose_3">Affordable Prices</span></li>
+                    <li class="flex items-center gap-3"><i data-lucide="check-circle" class="w-5 h-5 text-green-500 flex-shrink-0"></i> <span data-key="choose_4">Secure & Honest Process</span></li>
+                    <li class="flex items-center gap-3"><i data-lucide="check-circle" class="w-5 h-5 text-green-500 flex-shrink-0"></i> <span data-key="choose_5">Fast Support</span></li>
+                    <li class="flex items-center gap-3"><i data-lucide="check-circle" class="w-5 h-5 text-green-500 flex-shrink-0"></i> <span data-key="choose_6">Easy to Use Platform</span></li>
+                </ul>
+            </div>
+
+            <div class="bg-gradient-to-br from-slate-900 to-slate-800 text-white p-8 rounded-xl shadow-lg relative overflow-hidden mt-6 border-b-4 border-green-500">
+                <div class="relative z-10">
+                    <span class="founder-badge" data-key="founder_badge">Founder & CEO</span>
+                    <h4 class="text-3xl font-extrabold mb-1 tracking-tight text-white">Daha Nura Saluhu</h4>
+                    <p class="text-green-400 font-bold text-sm mb-4 uppercase tracking-wider">Bata GSM Online Nigeria</p>
+                    
+                    <p class="text-slate-200 text-sm leading-relaxed max-w-lg mb-4" data-key="founder_bio_full">
+                        Daha Nura Saluhu is the visionary founder of Bata GSM Online, the first specialized online GSM marketplace in Nigeria. Based in Kano, his mission is to revolutionize the mobile phone industry by creating a secure, scam-free digital environment that connects buyers directly with trusted vendors across the country.
+                    </p>
+                    
+                    <div class="flex items-center gap-2 mt-4 bg-white/10 p-3 rounded-lg backdrop-blur-sm border border-white/20 inline-flex">
+                        <i data-lucide="award" class="w-5 h-5 text-yellow-400"></i>
+                        <span class="text-xs font-bold text-yellow-100" data-key="first_in_nigeria_badge">1st GSM Marketplace in Nigeria</span>
+                    </div>
+                </div>
+                <div class="absolute right-0 bottom-0 opacity-10 transform translate-x-4 translate-y-4">
+                    <i data-lucide="cpu" class="w-40 h-40 text-white"></i>
+                </div>
+                <div class="absolute top-0 right-0 w-32 h-32 bg-green-500 blur-[60px] opacity-20 rounded-full pointer-events-none"></div>
+            </div>
+
+            <div class="text-center pt-6">
+                <div class="inline-block bg-green-50 border border-green-200 px-4 py-2 rounded-full">
+                    <p class="text-xs text-green-700 font-semibold flex items-center gap-2">
+                        <i data-lucide="shield-check" class="w-4 h-4"></i> 
+                        <span data-key="registration_text">Business Registration (CAC) in Progress</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div id="contact-page" class="hidden bg-white rounded-lg shadow p-6 max-w-2xl mx-auto">
+            <button onclick="window.showHomePage()" class="mb-4 text-green-700 font-semibold flex items-center space-x-1 hover:underline">
+                <i data-lucide="arrow-left" class="w-4 h-4"></i><span data-key="back_home">Back Home</span>
+            </button>
+            <h2 class="text-2xl font-bold mb-6 text-center text-slate-800" data-key="contact_title">Contact Us</h2>
+            <div class="space-y-4">
+                 <div class="text-center mb-6">
+                    <p class="text-gray-600" data-key="contact_desc">Do you have questions or want to place an order? Contact us via:</p>
+                </div>
+                
+                <a href="tel:+2347019216765" class="block bg-green-50 p-4 rounded-xl shadow-sm border border-green-100 flex items-center hover:bg-green-100 transition">
+                    <div class="bg-green-200 w-12 h-12 rounded-full flex items-center justify-center text-green-700 mr-4">
+                        <i data-lucide="phone" class="w-6 h-6"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-gray-800" data-key="call_us">Call Us</h3>
+                        <p class="text-sm text-gray-500 font-mono">+234 701 921 6765</p>
+                    </div>
+                </a>
+
+                <a href="https://wa.me/2347019216765" class="block bg-green-50 p-4 rounded-xl shadow-sm border border-green-100 flex items-center hover:bg-green-100 transition">
+                    <div class="bg-green-200 w-12 h-12 rounded-full flex items-center justify-center text-green-700 mr-4">
+                        <i data-lucide="message-circle" class="w-6 h-6"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-gray-800">WhatsApp</h3>
+                        <p class="text-sm text-gray-500">Chat with us directly</p>
+                    </div>
+                </a>
+                
+                <a href="mailto:batagsmonline@gmail.com" class="block bg-slate-50 p-4 rounded-xl shadow-sm border border-slate-200 flex items-center hover:bg-slate-100 transition">
+                    <div class="bg-slate-200 w-12 h-12 rounded-full flex items-center justify-center text-slate-700 mr-4">
+                        <i data-lucide="mail" class="w-6 h-6"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-gray-800">Email</h3>
+                        <p class="text-sm text-gray-500">batagsmonline@gmail.com</p>
+                    </div>
+                </a>
+
+                <div class="bg-slate-50 p-4 rounded-xl shadow-sm border border-slate-200 flex items-center">
+                    <div class="bg-slate-200 w-12 h-12 rounded-full flex items-center justify-center text-slate-700 mr-4">
+                        <i data-lucide="map-pin" class="w-6 h-6"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-gray-800" data-key="address">Address</h3>
+                        <p class="text-sm text-gray-500">Kano, Nigeria</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="privacy-page" class="hidden bg-white rounded-lg shadow p-6 max-w-3xl mx-auto space-y-6">
+            <button onclick="window.showHomePage()" class="mb-4 text-green-700 font-semibold flex items-center space-x-1 hover:underline">
+                <i data-lucide="arrow-left" class="w-4 h-4"></i> <span data-key="back_home">Back</span>
+            </button>
+            <div class="border-b pb-4">
+                <h2 class="text-2xl font-bold text-slate-800" data-key="policy_title">🛡️ Yadda Oda da Tsaro ke Aiki</h2>
+                <p class="text-slate-500 text-sm mt-1" data-key="pp_last_updated">Last Updated: December 2025</p>
+            </div>
+            
+            <div class="space-y-4 text-left">
+                <p class="text-sm text-gray-600 leading-relaxed" data-key="policy_intro">
+                    A Bata GSM Online, muna amfani da tsarin tsaka-tsaki (Admin Protection System) domin kare masu siya da masu sayarwa.
+                </p>
+
+                <div class="mt-3 bg-slate-50 p-3 rounded border border-slate-100">
+                    <h4 class="font-bold text-gray-700 text-sm mb-1" data-key="policy_p1_title">1. Duk Oda Ta Hannun Admin</h4>
+                    <p class="text-xs text-gray-500 leading-relaxed" data-key="policy_p1_desc">Ba a saka lambar ‘yan shago kai tsaye. Lambar Admin kaɗai ake amfani da ita domin rage damfara da tabbatar da tsaro.</p>
+                </div>
+
+                <div class="mt-2 bg-slate-50 p-3 rounded border border-slate-100">
+                    <h4 class="font-bold text-gray-700 text-sm mb-1" data-key="policy_p2_title">2. Rawar da Admin ke Takawa</h4>
+                    <p class="text-xs text-gray-500 leading-relaxed" data-key="policy_p2_desc">Admin yana tabbatar da wace shago ce ke da kayan, ingancin su, da farashin su. Admin wakili ne mai aminci tsakanin mai siya da mai shago.</p>
+                </div>
+
+                <div class="mt-2 bg-slate-50 p-3 rounded border border-slate-100">
+                    <h4 class="font-bold text-gray-700 text-sm mb-1" data-key="policy_p3_title">3. Tsarin Biyan Kuɗi & Isarwa</h4>
+                    <p class="text-xs text-gray-500 leading-relaxed" data-key="policy_p3_desc">Mai siya zai biya Admin. Admin zai karɓo kaya, ya gwada inganci, sannan ya tura wa mai siya a fadin Najeriya.</p>
+                </div>
+
+                <div class="mt-2 bg-slate-50 p-3 rounded border border-slate-100">
+                    <h4 class="font-bold text-gray-700 text-sm mb-1" data-key="policy_p4_title">4. Idan Kana Kano</h4>
+                    <p class="text-xs text-gray-500 leading-relaxed" data-key="policy_p4_desc">Zaka iya zuwa ofishin mu ko kasuwa kai tsaye ka karɓi kayan ka. Ba dole sai an yi delivery ba.</p>
+                </div>
+
+                <div class="mt-2 bg-slate-50 p-3 rounded border border-slate-100">
+                    <h4 class="font-bold text-gray-700 text-sm mb-1" data-key="policy_p5_title">5. Garanti da Inganci (Warranty)</h4>
+                    <p class="text-xs text-gray-500 leading-relaxed" data-key="policy_p5_desc">Muna da tsari na musamman:<br>• <b>London Used:</b> Garanti na kwana 2.<br>• <b>Sabuwar Waya (New):</b> Garanti na shekara 1.<br>Ba ma siyar da 'Sakan' (Nigerian Used) don gujewa matsala.</p>
+                </div>
+
+                <div class="mt-4 p-3 bg-yellow-50 rounded border border-yellow-200">
+                    <p class="text-xs text-yellow-800 italic text-center" data-key="policy_footer_note">
+                        ℹ️ Bata GSM Online ba banki ba ne, amma tsari ne na kariya. Advertise with trust, buy with ease.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div id="terms-page" class="hidden bg-white rounded-lg shadow p-6 max-w-3xl mx-auto space-y-6">
+            <button onclick="window.showHomePage()" class="mb-4 text-green-700 font-semibold flex items-center space-x-1 hover:underline">
+                <i data-lucide="arrow-left" class="w-4 h-4"></i> <span data-key="back_home">Back</span>
+            </button>
+            <div class="border-b pb-4">
+                <h2 class="text-2xl font-bold text-slate-800" data-key="terms_title">Terms & Conditions</h2>
+                <p class="text-slate-500 text-sm mt-1">Effective Date: January 1, 2025</p>
+            </div>
+
+            <div class="space-y-5 text-slate-700">
+                <p class="text-sm leading-relaxed italic" data-key="terms_intro">Welcome to Bata GSM Online. By accessing or using our platform, you agree to be bound by these terms.</p>
+
+                <section>
+                    <h3 class="font-bold text-base text-slate-900 mb-1" data-key="terms_sec1_title">1. GSM Marketplace Platform</h3>
+                    <p class="text-sm" data-key="terms_sec1_text">Bata GSM Online is a marketplace that connects buyers with vendors. We facilitate the display of products but are not the direct manufacturer of the items listed.</p>
+                </section>
+
+                <section>
+                    <h3 class="font-bold text-base text-slate-900 mb-1" data-key="terms_sec2_title">2. No Account Required</h3>
+                    <p class="text-sm" data-key="terms_sec2_text">You can browse and purchase items directly without creating an account or logging in. Transactions are often finalized via WhatsApp or phone calls.</p>
+                </section>
+
+                <section>
+                    <h3 class="font-bold text-base text-slate-900 mb-1" data-key="terms_sec3_title">3. Pricing & Availability</h3>
+                    <p class="text-sm" data-key="terms_sec3_text">Prices are subject to change without notice. Availability depends on individual vendors.</p>
+                </section>
+                
+                 <section>
+                    <h3 class="font-bold text-base text-slate-900 mb-1" data-key="terms_return_title">4. Return Policy</h3>
+                    <p class="text-sm" data-key="terms_return_desc">Items can be returned within 24 hours if a fault is detected that was not disclosed. Physical damages caused by the user are not covered.</p>
+                </section>
+            </div>
+        </div>
+
+        <div id="cart-page" class="hidden">
+            <button id="back-button-cart" class="mb-4 text-green-700 font-semibold flex items-center space-x-1 hover:underline">
+                <i data-lucide="arrow-left" class="w-4 h-4"></i>
+                <span data-key="back_button">Back</span>
+            </button>
+            <h2 class="text-xl sm:text-2xl font-bold mb-4 text-slate-800" data-key="cart_title">Shopping Cart</h2>
+            <div id="cart-items-container" class="space-y-4"></div>
+            <div id="cart-summary" class="mt-8 pt-4 border-t border-slate-300 hidden">
+                <div class="flex justify-between items-center mb-4">
+                    <span class="text-lg font-semibold text-slate-700" data-key="total_price">Total Price:</span>
+                    <span id="cart-total-price" class="text-2xl font-bold text-green-700">₦0</span>
+                </div>
+                <button id="send-whatsapp-order-btn" class="w-full bg-green-600 text-white font-bold py-3 px-4 rounded-lg hover:bg-green-700 transition duration-150 shadow flex items-center justify-center space-x-2">
+                    <i data-lucide="send" class="w-5 h-5"></i>
+                    <span data-key="send_order_whatsapp">Send Order via WhatsApp</span>
+                </button>
+            </div>
+            <div id="no-cart-items" class="text-center text-slate-500 hidden mt-8 bg-white p-8 rounded-lg shadow">
+                <i data-lucide="shopping-cart-off" class="w-12 h-12 sm:w-16 sm:h-16 mx-auto text-slate-400 mb-4"></i>
+                <p class="text-base sm:text-lg" data-key="no_cart_items">Your cart is empty.</p>
+            </div>
+        </div>
+
+        <div id="favorites-page" class="hidden">
+            <button id="back-button-fav" class="mb-4 text-green-700 font-semibold flex items-center space-x-1 hover:underline">
+                <i data-lucide="arrow-left" class="w-4 h-4"></i>
+                <span data-key="back_button">Back</span>
+            </button>
+            <h2 class="text-xl sm:text-2xl font-bold mb-4 text-slate-800" data-key="favorites_title">My Favorites</h2>
+            <div id="favorites-list" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 sm:gap-4"></div>
+            <div id="no-favorites" class="text-center text-slate-500 hidden mt-8 bg-white p-8 rounded-lg shadow">
+                <i data-lucide="heart-off" class="w-12 h-12 sm:w-16 sm:h-16 mx-auto text-slate-400 mb-4"></i>
+                <p class="text-base sm:text-lg" data-key="no_favorites_text">You haven't saved any favorites yet.</p>
+            </div>
+        </div>
+
+        <div id="detail-page-container" class="hidden">
+            <button id="back-button" class="mb-4 text-green-700 font-semibold flex items-center space-x-1 hover:underline">
+                <i data-lucide="arrow-left" class="w-4 h-4"></i>
+                <span data-key="back_button">Back</span>
+            </button>
+            <div id="detail-content" class="bg-white p-4 rounded-lg shadow-lg pb-24">
+                 <div class="text-center p-8 text-slate-500">
+                      <div class="spinner mx-auto"></div>
+                      <p class="mt-2 text-sm" data-key="loading_products">Loading products...</p>
+                 </div>
+            </div>
+            <!-- Sticky Bottom Action Bar will be injected dynamically -->
+        </div>
+
+        <div id="admin-page" class="hidden">
+            <div class="flex justify-between items-center mb-6">
+                <button id="back-button-admin" class="text-green-700 font-semibold flex items-center space-x-1 hover:underline">
+                    <i data-lucide="arrow-left" class="w-4 h-4"></i>
+                    <span data-key="back_button">Back</span>
+                </button>
+                <div class="bg-red-100 text-red-800 px-3 py-1 rounded-full text-xs font-bold border border-red-200">
+                    Admin Mode Active
+                </div>
+            </div>
+            
+            <div class="bg-white p-4 sm:p-6 rounded-lg shadow-lg mb-8 border border-gray-200">
+                <h2 class="text-lg sm:text-xl font-bold mb-4 text-slate-800 flex items-center gap-2">
+                    <i data-lucide="settings" class="w-5 h-5 text-gray-500"></i>
+                    Settings & Analytics
+                </h2>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="space-y-2">
+                        <label class="block text-xs font-bold uppercase text-slate-500">WhatsApp Number (Orders)</label>
+                        <div class="flex">
+                            <input type="tel" id="admin-whatsapp-input" placeholder="23480..." class="flex-1 p-2 border rounded-l-md text-sm font-mono">
+                            <button onclick="window.saveSettings('whatsapp')" class="bg-green-600 text-white px-4 py-2 rounded-r-md text-xs font-bold hover:bg-green-700">Save</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white p-4 sm:p-6 rounded-lg shadow-lg mb-8">
+                <h2 class="text-xl sm:text-2xl font-bold mb-6 text-center" data-key="admin_form_title">Add or Edit Product</h2>
+                <form id="add-product-form" class="space-y-4"></form> 
+            </div>
+            <div class="bg-white p-4 sm:p-6 rounded-lg shadow-lg">
+                <h2 class="text-xl sm:text-2xl font-bold mb-6 text-center" data-key="admin_manage_title">Manage Products</h2>
+                <div id="manage-products-list" class="space-y-3 sm:space-y-4">
+                      <p id="admin-list-placeholder" class="text-center text-slate-500 py-4" data-key="loading_products">Loading products...</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-slate-900 text-white mt-10 pt-10 pb-6 border-t-4 border-green-600">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+                <div>
+                    <h3 class="text-lg font-bold text-yellow-400 mb-4 uppercase tracking-wide">Social Media</h3>
+                    <ul class="space-y-3">
+                        <li>
+                            <a href="https://www.facebook.com/share/1PnExzn7FB/" class="flex items-center text-slate-300 hover:text-white transition">
+                                <i data-lucide="facebook" class="w-5 h-5 mr-2"></i> Facebook Profile
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.facebook.com/profile.php?id=61583486223165&mibextid=ZbWKwL" class="flex items-center text-slate-300 hover:text-white transition">
+                                <i data-lucide="facebook" class="w-5 h-5 mr-2"></i> Facebook Page
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.tiktok.com/@bata.gsm.online" class="flex items-center text-slate-300 hover:text-white transition">
+                                <i data-lucide="video" class="w-5 h-5 mr-2"></i> TikTok
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.instagram.com/bata.gsm.online?igsh=NG9sczMwN25zN3N2" class="flex items-center text-slate-300 hover:text-white transition">
+                                <i data-lucide="instagram" class="w-5 h-5 mr-2"></i> Instagram
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.youtube.com/@BataGSMOnline" class="flex items-center text-slate-300 hover:text-white transition">
+                                <i data-lucide="youtube" class="w-5 h-5 mr-2"></i> YouTube
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 class="text-lg font-bold text-yellow-400 mb-4 uppercase tracking-wide">Quick Links</h3>
+                    <ul class="space-y-3">
+                        <li><button onclick="window.showHomePage()" class="text-slate-300 hover:text-green-400 transition text-sm">Home</button></li>
+                        <li><button onclick="window.showHomePage()" class="text-slate-300 hover:text-green-400 transition text-sm">Categories</button></li>
+                        <li><button onclick="window.showAboutPage()" class="text-slate-300 hover:text-green-400 transition text-sm">About Us</button></li>
+                        <li><button onclick="window.showContactPage()" class="text-slate-300 hover:text-green-400 transition text-sm">Contact Us</button></li>
+                        <li><button onclick="window.showPrivacyPage()" class="text-slate-300 hover:text-green-400 transition text-sm">Privacy Policy</button></li>
+                        <li><button onclick="window.showTermsPage()" class="text-slate-300 hover:text-green-400 transition text-sm">Terms & Conditions</button></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 class="text-lg font-bold text-yellow-400 mb-4 uppercase tracking-wide">Contact Info</h3>
+                    <div class="bg-slate-800 p-4 rounded-lg border border-slate-700">
+                        <h4 class="font-bold text-white mb-1">Bata GSM Online</h4>
+                        <p class="text-xs text-slate-400 mb-3">Nigeria GSM Market Platform</p>
+                        <p class="text-sm text-slate-300 flex items-center mb-2">
+                            <i data-lucide="map-pin" class="w-4 h-4 mr-2 text-green-500"></i> Kano, Nigeria
+                        </p>
+                        <p class="text-sm text-slate-300 flex items-center mb-2">
+                            <i data-lucide="phone" class="w-4 h-4 mr-2 text-green-500"></i> +234 701 921 6765
+                        </p>
+                        <p class="text-sm text-slate-300 flex items-center">
+                            <i data-lucide="mail" class="w-4 h-4 mr-2 text-green-500"></i> batagsmonline@gmail.com
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="border-t border-slate-800 pt-6 text-center">
+                <p class="text-sm text-slate-500">
+                    &copy; 2026 Bata GSM Online. All Rights Reserved.
+                </p>
+                <p id="user-id-display" class="text-[10px] text-slate-700 font-mono mt-1"></p>
+            </div>
+        </div>
+    </footer>
+
+    <div id="login-modal" class="hidden fixed inset-0 bg-black bg-opacity-90 flex items-center justify-center z-[200] p-4 backdrop-blur-sm">
+        <div class="bg-white rounded-2xl shadow-2xl p-8 max-w-sm w-full text-center border-t-4 border-red-500">
+            <div class="mx-auto bg-red-100 w-16 h-16 rounded-full flex items-center justify-center mb-4">
+                <i data-lucide="lock" class="w-8 h-8 text-red-600"></i>
+            </div>
+            <h3 class="text-xl font-bold text-slate-800 mb-2">Shiga Admin</h3>
+            <p class="text-slate-500 text-sm mb-6">Saka Email da Password don shiga.</p>
+            
+            <div class="space-y-3 mb-6">
+                <input type="email" id="admin-email-input" class="auth-input w-full border-b-2 border-slate-300 focus:border-red-500 focus:outline-none bg-transparent py-3" placeholder="Email (misali: muhammadu.com)">
+                <input type="password" id="admin-pass-input" class="auth-input w-full border-b-2 border-slate-300 focus:border-red-500 focus:outline-none bg-transparent py-3" placeholder="Password">
+            </div>
+            
+            <div class="grid grid-cols-2 gap-3">
+                <button id="cancel-login-btn" class="py-3 rounded-lg text-slate-600 font-bold hover:bg-slate-100 transition">Fita</button>
+                <button id="perform-login-btn" class="py-3 rounded-lg bg-red-600 text-white font-bold hover:bg-red-700 transition shadow-lg shadow-red-200">Shiga</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="ai-modal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-[100] p-4">
+        <div class="bg-white rounded-lg shadow-xl p-6 max-w-md w-full">
+            <h3 class="text-lg sm:text-xl font-bold mb-4 text-green-700 flex items-center"><i data-lucide="sparkles" class="w-5 h-5 mr-2"></i><span data-key="modal_title">Tallar Zamani Daga AI</span></h3>
+            <div id="modal-content" class="bg-slate-100 p-3 sm:p-4 rounded-md mb-4 text-slate-800 text-sm whitespace-pre-wrap max-h-60 overflow-y-auto"></div>
+            <div class="flex space-x-2">
+                 <button id="copy-modal-btn" class="flex-1 bg-green-600 text-white font-bold py-2 px-3 rounded-lg hover:bg-green-700 text-sm flex items-center justify-center space-x-1" data-key="copy_button"><i data-lucide="copy" class="w-4 h-4"></i><span>Kwafa Rubutu</span></button>
+                 <button id="close-modal-btn" class="flex-1 bg-slate-300 text-slate-800 font-bold py-2 px-3 rounded-lg hover:bg-slate-400 text-sm" data-key="close_button">Rufe</button>
+            </div>
+        </div>
+    </div>
+    
+    <div id="filter-modal" class="hidden fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-[100] p-4">
+        <div class="bg-white rounded-lg shadow-xl w-full max-w-md sm:max-w-lg">
+            <div class="p-4 sm:p-6 border-b flex justify-between items-center">
+                <h3 class="text-lg sm:text-xl font-bold text-slate-800 flex items-center"><i data-lucide="sliders-horizontal" class="w-5 h-5 mr-2"></i><span data-key="filter_title">Tace Kayayyaki</span></h3>
+                <button id="close-filter-btn" class="text-slate-400 hover:text-slate-600 p-1"> <i data-lucide="x" class="w-5 h-5"></i> </button>
+            </div>
+            <div id="filter-modal-content" class="p-4 sm:p-6">
+                <div class="mb-4 sm:mb-6">
+                    <label class="font-semibold text-slate-700 text-sm block mb-1.5" data-key="filter_price_range">Farashi</label>
+                    <div class="flex items-center space-x-2">
+                        <input type="number" id="min-price" placeholder="Min ₦" class="w-full p-2 border rounded-md text-sm">
+                        <span class="text-slate-500">-</span>
+                        <input type="number" id="max-price" placeholder="Max ₦" class="w-full p-2 border rounded-md text-sm">
+                    </div>
+                </div>
+                <div>
+                    <label class="font-semibold text-slate-700 text-sm block mb-1.5" data-key="filter_market">Kasuwa</label>
+                    <div id="market-filter-options" class="space-y-1.5">
+                         <p class="text-sm text-slate-500">Ana lodo kasuwanni...</p>
+                    </div>
+                </div>
+            </div>
+            <div class="p-3 sm:p-4 bg-slate-50 border-t flex justify-end space-x-2">
+                <button id="clear-filters-btn" class="px-3 sm:px-4 py-1.5 sm:py-2 bg-slate-300 text-slate-800 rounded-lg hover:bg-slate-400 text-xs sm:text-sm flex items-center space-x-1" data-key="filter_clear"><i data-lucide="trash-2" class="w-3.5 h-3.5"></i><span>Goge Tacewa</span></button>
+                <button id="apply-filters-btn" class="px-4 sm:px-6 py-1.5 sm:py-2 bg-green-600 text-white font-bold rounded-lg hover:bg-green-700 text-xs sm:text-sm flex items-center space-x-1" data-key="filter_apply"><i data-lucide="check" class="w-3.5 h-3.5"></i><span>Aiwatar</span></button>
+            </div>
+        </div>
+    </div>
+    
+    <script type="module">
+        import { initializeApp as fbInitializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        import {
+            getAuth as fbGetAuth,
+            signInAnonymously as fbSignInAnonymously,
+            signInWithEmailAndPassword, 
+            signOut, 
+            onAuthStateChanged as fbOnAuthStateChanged
+        } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        import {
+            getFirestore as fbGetFirestore,
+            collection as fbCollection,
+            doc as fbDoc,
+            addDoc as fbAddDoc,
+            getDoc as fbGetDoc,
+            setDoc as fbSetDoc,
+            updateDoc as fbUpdateDoc,
+            deleteDoc as fbDeleteDoc,
+            onSnapshot as fbOnSnapshot,
+            query as fbQuery,
+            orderBy as fbOrderBy, 
+            serverTimestamp as fbServerTimestamp,
+            Timestamp as fbTimestamp,
+            arrayUnion as fbArrayUnion,
+            enableMultiTabIndexedDbPersistence as fbEnableMultiTabIndexedDbPersistence,
+            setLogLevel as setFirestoreLogLevel
+        } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+
+        // --- CONFIGURATION DA FASSARA (Translations) ---
+        const translations = {
+             ha: {
+                slogan: "Talla cikin amana, siye cikin sauƙi.", 
+                admin: "Admin", 
+                cat_all: "Duka", 
+                cat_phones: "Wayoyi", 
+                cat_parts: "Kayan Gyara", 
+                cat_laptops: "Laptops",
+                cat_accessories_main: "Kayan Waya (Accessories)",
+                cat_electronics: "Kayan Lantarki",
+                cat_trending: "Trending",
+                cat_popular: "Mafi Shahara",
+                cat_wholesale: "Kayan Sari", 
+                admin_gen_desc: "Kirkiri Bayani (AI) ✨",
+                admin_gen_slogan: "Kirkiri Talla (AI) 📢",
+                search_placeholder: "Nema a dukkan rassa...", 
+                deal_of_the_week_title: "Kayan Alheri na Mako",
+                featured_title: "Kayayyaki Masu Kyau", 
+                latest_title: "Sabbin Kayayyaki", 
+                back_button: "Komawa Baya", 
+                admin_form_title: "Saka ko Gyara Kaya",
+                admin_manage_title: "Sarrafa Kayayyaki", 
+                footer_title: "Manufar Amana da Albarka",
+                footer_desc: "Wannan app ɗin an kafa shi ne don tallata kayayyaki cikin amana da gaskiya.",
+                modal_title: "Tallar Zamani Daga AI", 
+                copy_button: "Kwafa Rubutu", 
+                close_button: "Rufe", 
+                product_desc_title: "Bayani akan Kayan:",
+                seller_info_title: "Mai Siyarwa:", 
+                seller_name: "Suna:", 
+                market_name: "Kasuwa:", 
+                phone_number: "Lambar Waya:", 
+                call_seller: "Kira",
+                whatsapp_seller: "WhatsApp", 
+                share_product: "Turawa wani",
+                copy_link: "Kwafa Link",
+                save_item: "Ajiye",
+                admin_product_name: "Sunan Kaya", 
+                admin_product_desc: "Bayani akan Kayan", 
+                admin_gen_desc: "✨ Kirkiri Bayani", 
+                admin_gen_slogan: "✨ Kirkiri Talla",
+                admin_price: "Farashi (₦)", 
+                admin_image_link: "Image Link", 
+                admin_seller_name: "Sunan Mai Siyarwa", 
+                admin_seller_phone: "Lambar Wayar Mai Siyarwa",
+                admin_market: "Zabi Kasuwa", 
+                admin_category: "Zabi Sashe", 
+                admin_status: "Zabi Hali", 
+                admin_save_button: "Ajiye Kaya",
+                admin_verified_seller: "Tabbatar da Mai Siyarwa (Verified)", 
+                copied: "An Kwafa!", 
+                edit: "Gyara", 
+                delete: "Goge",
+                confirm_delete: "Ka tabbata kana so ka goge wannan kayan?", 
+                product_saved_success: "An yi nasarar saka sabon kaya!",
+                product_edited_success: "An yi nasarar gyara kayan!", 
+                seller_page_title: "Kayayyakin", 
+                verified_seller_tooltip: "Mai siyarwa tabbatacce (Verified)",
+                recently_viewed_title: "Kayayyakin da Ka Kalla Kwanan Nan", 
+                filter_title: "Tace Kayayyaki", 
+                filter_price_range: "Farashi",
+                filter_market: "Kasuwa", 
+                filter_clear: "Goge Tacewa", 
+                filter_apply: "Aiwatar", 
+                favorites_title: "Kayayyakin da Ka Ajiye",
+                no_favorites_text: "Babu kayayyakin da ka ajiye a zuciya tukuna.", 
+                reviews_title: "Sharhin Al'umma", 
+                avg_rating: "Matsakaicin Daraja",
+                add_review: "Kara Sharhi", 
+                your_name: "Sunan Ka", 
+                your_rating: "Darajar Ka", 
+                your_comment: "Sharhin Ka", 
+                submit_review: "Tura Sharhi",
+                no_reviews_yet: "Babu wani sharhi tukuna. Ka zama na farko!", 
+                review_submitted: "An samu sharhin ka. Na gode!", 
+                reviews: "Sharhi",
+                no_products_found: "Babu kayayyaki da suka dace da bincikenka.", 
+                try_different_search: "Gwada wani bincike ko canza tacewa.",
+                review_error: "Da fatan za a cika suna, sharhi, kuma a zabi daraja.", 
+                alert_error_title: "Kuskure", 
+                alert_success_title: "Nasarar",
+                no_markets_yet: "Babu kasuwanni tukuna.", 
+                fill_all_fields_error: "Da fatan za a cika dukkan filayen da ake bukata daidai.",
+                no_description_available: "Babu bayani.", 
+                offline_mode: "Haɗi ya yanke. Ana aiki a yanayin layi...",
+                loading_products: "Ana lodo kayayyaki...", 
+                no_products_yet_admin: "Babu kayayyaki a database tukuna.",
+                cart_title: "Saharar Saye",
+                add_to_cart: "Saka a Sahara (Buy Now)",
+                no_cart_items: "Saharar ka ba komai a ciki.",
+                total_price: "Jimillar Kuɗi:",
+                send_order_whatsapp: "Tura Oda ta WhatsApp",
+                cart_added: "An Saka a Sahara!",
+                cart_item_removed: "An Cire Kayan.",
+                quantity: "Adadi",
+                item: "Kaya",
+                order_summary: "Takaitaccen Oda",
+                admin_whatsapp_number: "2347019216765",
+                back_home: "Komawa Gida",
+                about_us_header: "Su Waye Mu?",
+                about_us_content: "Bata GSM Online shafi ne da yake haɗa masu siye da masu sayar da wayoyi da accessories masu inganci a Kano. Muna aiki tare da manyan 'yan kasuwa daga Bello Road, Farm Center, da sauran kasuwannin GSM don tabbatar da cewa abokan ciniki sun sami kayayyaki na gaskiya cikin aminci. Manufarmu ita ce sauƙaƙe siyan waya, mai sauƙi, kuma babu damfara.",
+                mission_header: "Manufarmu",
+                mission_content: "Muna son tabbatar da cewa siyan waya ya zama mai sauƙi, mai tsaro, kuma mai rahusa ga kowa. Muna kawar da haɗarin damfara ta hanyar samar da ingantaccen dandamali da mutane za su iya dogaro da shi.",
+                vision_header: "Hasashenmu",
+                vision_content: "Mu zama mafi sahihin GSM marketplace a Arewacin Najeriya, cike da gaskiya, amana, da fasaha.",
+                why_choose_header: "Me yasa za ka zabi Bata GSM?",
+                founder_badge: "Founder & CEO",
+                first_in_nigeria_badge: "1st GSM Marketplace a Nigeria",
+                founder_bio_full: "Daha Nura Saluhu shi ne wanda ya kirkiri Bata GSM Online, kasuwar waya ta farko ta yanar gizo a Nigeria. Daga Kano, burinsa shi ne kawo sauyi a harkar wayoyi ta hanyar samar da tsari mai tsaro wanda ke hada masu siya da ‘yan kasuwa kai tsaye.",
+                contact_title: "Tuntube Mu",
+                contact_desc: "Kuna da tambaya ko kuna son yin oda? Za ku iya samun mu ta hanyoyin nan:",
+                call_us: "Kira Waya",
+                address: "Adireshi",
+                choose_1: "Vendors da aka tantance",
+                choose_2: "Kayayyaki na gaskiya",
+                choose_3: "Farashi masu rahusa",
+                choose_4: "Tsarin siye mai tsaro",
+                choose_5: "Saurin tuntuba",
+                choose_6: "Shafi mai sauƙin amfani",
+                social_title: "Kafofin Sadarwa",
+                registration_text: "Yana kan aikin rajista (CAC)",
+                nav_home: "Gida (Home)",
+                nav_about: "Game da Mu (About)",
+                nav_contact: "Tuntube Mu (Contact)",
+                policy_title: "🛡️ Yadda Oda da Tsaro ke Aiki",
+                policy_intro: "A Bata GSM Online, muna amfani da tsarin tsaka-tsaki (Admin Protection System) domin kare masu siya da masu sayarwa.",
+                policy_p1_title: "1. Duk Oda Ta Hannun Admin",
+                policy_p1_desc: "Ba a saka lambar ‘yan shago kai tsaye. Lambar Admin kaɗai ake amfani da ita domin rage damfara da tabbatar da tsaro.",
+                policy_p2_title: "2. Rawar da Admin ke Takawa",
+                policy_p2_desc: "Admin yana tabbatar da wace shago ce ke da kayan, ingancin su, da farashin su. Admin wakili ne mai aminci tsakanin mai siya da mai shago.",
+                policy_p3_title: "3. Tsarin Biyan Kuɗi & Isarwa",
+                policy_p3_desc: "Mai siya zai biya Admin. Admin zai karɓo kaya, ya gwada inganci, sannan ya tura wa mai siya a fadin Najeriya.",
+                policy_p4_title: "4. Idan Kana Kano",
+                policy_p4_desc: "Zaka iya zuwa ofishin mu ko kasuwa kai tsaye ka karɓi kayan ka. Ba dole sai an yi delivery ba.",
+                policy_p5_title: "5. Garanti da Inganci (Warranty)",
+                policy_p5_desc: "Muna da tsari na musamman:<br>• <b>London Used:</b> Garanti na kwana 2.<br>• <b>Sabuwar Waya (New):</b> Garanti na shekara 1.<br>Ba ma siyar da 'Sakan' (Nigerian Used) don gujewa matsala.",
+                policy_footer_note: "ℹ️ Bata GSM Online ba banki ba ne, amma tsari ne na kariya. Advertise with trust, buy with ease.",
+                terms_title: "Sharudda & Ka'idoji",
+                terms_intro: "Barka da zuwa Bata GSM Online. Ta amfani da wannan shafin, kun amince da waɗannan sharudda.",
+                terms_sec1_title: "1. Tsarin Kasuwa",
+                terms_sec1_text: "Bata GSM Online kasuwa ce ta hada mai siya da mai siyarwa. Mu muna sauƙaƙe nuna kayayyaki ne amma ba mu ne masana'antar da ta yi su ba.",
+                terms_sec2_title: "2. Ba Sai An Yi Register Ba",
+                terms_sec2_text: "Zaka iya siyan kaya kai tsaye ba tare da bude account ba. Ana kammala ciniki ne ta WhatsApp ko Kira.",
+                terms_sec3_title: "3. Farashi da Kasancewa",
+                terms_sec3_text: "Farashin kaya na iya canzawa ba tare da sanarwa ba, gwargwadon yadda kasuwa ta juya.",
+                terms_return_title: "4. Manufar Mayar da Kaya",
+                terms_return_desc: "Ana iya dawo da kaya cikin awa 24 idan an samu matsala wacce ba a bayyana ba tun farko. Lalacewar da mai amfani ya jawo da kansa ba a biya.",
+                pwa_title: "Install Bata GSM Online",
+                pwa_desc: "Maza • Tabbatacce • Yana aiki Offline",
+                pwa_install_btn: "Saka a Home Screen"
+             },
+             en: {
+                 slogan: "Advertise with trust, buy with ease.", 
+                 admin: "Admin", 
+                 cat_all: "All", 
+                 cat_phones: "Phones", 
+                 cat_parts: "Repair Parts", 
+                 cat_laptops: "Laptops",
+                 cat_accessories_main: "Accessories", 
+                 cat_electronics: "Electronics",
+                 cat_trending: "Trending",
+                 cat_popular: "Popular",
+                 cat_wholesale: "Wholesale", 
+                 admin_gen_desc: "Generate Description ✨",
+                 admin_gen_slogan: "Generate Ad Slogan 📢",
+                 search_placeholder: "Search across all categories...", 
+                 deal_of_the_week_title: "Deal of the Week",
+                 featured_title: "Featured Products", 
+                 latest_title: "Latest Products", 
+                 back_button: "Back", 
+                 admin_form_title: "Add or Edit Product",
+                 admin_manage_title: "Manage Products", 
+                 footer_title: "Policy of Trust and Blessing",
+                 footer_desc: "This app was established to promote products with trust and honesty.",
+                 modal_title: "Modern Ad from AI", 
+                 copy_button: "Copy Text", 
+                 close_button: "Close", 
+                 product_desc_title: "Product Description:",
+                 seller_info_title: "Seller Information:", 
+                 seller_name: "Name:", 
+                 market_name: "Market:", 
+                 phone_number: "Phone Number:", 
+                 call_seller: "Call Seller",
+                 whatsapp_seller: "WhatsApp", 
+                 share_product: "Share Product",
+                 copy_link: "Copy Link",
+                 save_item: "Save Item",
+                 admin_product_name: "Product Name", 
+                 admin_product_desc: "Product Description", 
+                 admin_gen_desc: "✨ Generate Desc", 
+                 admin_gen_slogan: "✨ Generate Ad",
+                 admin_price: "Price (₦)", 
+                 admin_image_link: "Image Link", 
+                 admin_seller_name: "Seller Name", 
+                 admin_seller_phone: "Seller Phone Number",
+                 admin_market: "Select Market", 
+                 admin_category: "Select Category", 
+                 admin_status: "Select Status", 
+                 admin_save_button: "Save Product",
+                 admin_verified_seller: "Mark Seller as Verified", 
+                 copied: "Copied!", 
+                 edit: "Edit", 
+                 delete: "Delete",
+                 confirm_delete: "Are you sure you want to delete this product?", 
+                 product_saved_success: "New product added successfully!",
+                 product_edited_success: "Product updated successfully!", 
+                 seller_page_title: "Products from", 
+                 verified_seller_tooltip: "Verified Seller",
+                 recently_viewed_title: "Recently Viewed Products", 
+                 filter_title: "Filter Products", 
+                 filter_price_range: "Price Range",
+                 filter_market: "Market", 
+                 filter_clear: "Clear Filters", 
+                 filter_apply: "Apply", 
+                 favorites_title: "My Favorites",
+                 no_favorites_text: "You haven't saved any favorites yet.", 
+                 reviews_title: "Customer Reviews", 
+                 avg_rating: "Average Rating",
+                 add_review: "Add Your Review", 
+                 your_name: "Your Name", 
+                 your_rating: "Your Rating", 
+                 your_comment: "Your Comment", 
+                 submit_review: "Submit Review",
+                 no_reviews_yet: "No reviews yet. Be the first to comment!", 
+                 review_submitted: "Review submitted. Thank you!", 
+                 reviews: "Reviews",
+                 no_products_found: "No products matched your search.", 
+                 try_different_search: "Try a different search or adjust filters.",
+                 review_error: "Please enter your name, comment, and select a rating.", 
+                 alert_error_title: "Error", 
+                 alert_success_title: "Success",
+                 no_markets_yet: "No markets available yet.", 
+                 fill_all_fields_error: "Please fill in all required fields correctly.",
+                 no_description_available: "No description available.", 
+                 offline_mode: "Connection lost. Operating in offline mode...",
+                 loading_products: "Loading products...", 
+                 no_products_yet_admin: "No products in database yet.",
+                 cart_title: "Shopping Cart",
+                 add_to_cart: "Buy Now",
+                 no_cart_items: "Your cart is empty.",
+                 total_price: "Total Price:",
+                 send_order_whatsapp: "Send Order via WhatsApp",
+                 cart_added: "Added to Cart!",
+                 cart_item_removed: "Item Removed.",
+                 quantity: "Qty",
+                 item: "Item",
+                 order_summary: "Order Summary",
+                 admin_whatsapp_number: "2347019216765",
+                 back_home: "Back Home",
+                 about_us_header: "Who We Are",
+                 about_us_content: "Bata GSM Online is a platform connecting buyers and sellers of quality phones and accessories in Kano. We work with major vendors from Bello Road, Farm Center, and other major GSM markets to ensure customers get genuine products with safety and trust. Our goal is to make buying phones easy, simple, and scam-free.",
+                 mission_header: "Our Mission",
+                 mission_content: "We want to ensure that buying a phone is easy, safe, and affordable for everyone. We eliminate the risk of scams by providing a trusted platform people can rely on.",
+                 vision_header: "Our Vision",
+                 vision_content: "To become the most trusted GSM marketplace in Northern Nigeria, full of honesty, trust, and technology.",
+                 why_choose_header: "Why Choose Bata GSM?",
+                 founder_badge: "Founder & CEO",
+                 first_in_nigeria_badge: "1st GSM Marketplace in Nigeria",
+                 founder_bio_full: "Daha Nura Saluhu is the visionary founder of Bata GSM Online, the first specialized online GSM marketplace in Nigeria. Based in Kano, his mission is to revolutionize the mobile phone industry by creating a secure, scam-free digital environment that connects buyers directly with trusted vendors across the country.",
+                 contact_title: "Contact Us",
+                 contact_desc: "Do you have questions or want to place an order? Contact us via:",
+                 call_us: "Call Us",
+                 address: "Address",
+                 choose_1: "Verified Vendors",
+                 choose_2: "Genuine Products",
+                 choose_3: "Affordable Prices",
+                 choose_4: "Secure & Honest Process",
+                 choose_5: "Fast Support",
+                 choose_6: "Easy to Use Platform",
+                 social_title: "Social Media",
+                 registration_text: "Business Registration (CAC) in Progress",
+                 nav_home: "Home",
+                 nav_about: "About Us",
+                 nav_contact: "Contact Us",
+                 policy_title: "🛡️ How Ordering & Security Works",
+                 policy_intro: "At Bata GSM Online, we use an Admin Protection System to protect both buyers and sellers.",
+                 policy_p1_title: "1. All Orders via Admin",
+                 policy_p1_desc: "Direct seller numbers are not displayed. Only the Admin number is used to minimize fraud and ensure security.",
+                 policy_p2_title: "2. The Admin's Role",
+                 policy_p2_desc: "The Admin verifies the shop availability, quality, and price of the product. The Admin acts as a trusted intermediary between buyer and seller.",
+                 policy_p3_title: "3. Payment & Delivery Process",
+                 policy_p3_desc: "Buyer pays the Admin. The Admin picks up the item, tests it for quality, and then delivers to the buyer anywhere in Nigeria.",
+                 policy_p4_title: "4. If You Are in Kano",
+                 policy_p4_desc: "You can visit our office or the market directly to pick up your item. Delivery is not mandatory.",
+                 policy_p5_title: "5. Warranty & Quality Assurance",
+                 policy_p5_desc: "We have a specific policy:\n• London Used: 2 days warranty.\n• New Phone: 1 year warranty.\nWe do not sell 'Nigerian Used' to avoid issues.",
+                 policy_footer_note: "ℹ️ Bata GSM Online is not a bank, but a protection system. Advertise with trust, buy with ease.",
+                 terms_title: "Terms & Conditions",
+                 terms_intro: "Welcome to Bata GSM Online. By accessing or using our platform, you agree to be bound by these terms.",
+                 terms_sec1_title: "1. GSM Marketplace Platform",
+                 terms_sec1_text: "Bata GSM Online is a marketplace that connects buyers with vendors. We facilitate the display of products but are not the direct manufacturer of the items listed.",
+                 terms_sec2_title: "2. No Account Required",
+                 terms_sec2_text: "You can browse and purchase items directly without creating an account or logging in. Transactions are often finalized via WhatsApp or phone calls.",
+                 terms_sec3_title: "3. Pricing & Availability",
+                 terms_sec3_text: "Prices of phones and accessories are subject to change without notice, depending on market fluctuations.",
+                 terms_return_title: "4. Return Policy",
+                 terms_return_desc: "Items can be returned within 24 hours if a fault is detected that was not disclosed. Physical damages caused by the user are not covered.",
+                 pwa_title: "Install Bata GSM Online",
+                 pwa_desc: "Fast • Secure • Works Offline",
+                 pwa_install_btn: "Add to Home Screen"
+             }
+        };
+
+        // --- GLOBAL VARIABLES ---
+        let currentLanguage = localStorage.getItem('bataGsmLanguage_v3') || 'en';
+        let products = []; 
+        let recentlyViewedIds = []; 
+        let userFavorites = []; 
+        let userCart = []; 
+        let currentFilters = { minPrice: null, maxPrice: null, markets: [] };
+        let currentCategory = 'Duka'; 
+        let db, auth, userId, appId, productsCollectionRef, unsubscribeProducts;
+        let isOffline = false;
+        let isDataLoaded = false;
+        
+        let adminWhatsAppNumber = "2347019216765"; 
+        let isAdminAuthenticated = false;
+
+        // --- GEMINI AI SETUP ---
+        const geminiApiKey = "AIzaSyDdUOjazJ-xQ8t7CSI0xU7vxoq82sHoAdU";
+
+        async function generateAIContent(type) {
+            const t = translations[currentLanguage];
+            const name = document.getElementById('productName').value;
+            const price = document.getElementById('price').value;
+            const category = document.getElementById('category').value;
+            const market = document.getElementById('market').value;
+            
+            if (!name) { alert("Dan Allah saka sunan kaya tukunna."); return; }
+
+            const btn = type === 'desc' ? document.getElementById('gen-desc-btn') : document.getElementById('gen-ad-btn');
+            const originalText = btn.innerHTML;
+            btn.innerHTML = "✨ Ana Aiki...";
+            btn.disabled = true;
+
+            let prompt = "";
+            if (type === 'desc') {
+                prompt = `Write a short, professional product description for a ${category} named "${name}" sold at ${market} for ${price} Naira. Highlight its key features. Language: ${currentLanguage === 'ha' ? 'Hausa' : 'English'}.`;
+            } else {
+                prompt = `Write a short, catchy social media ad slogan with emojis for selling "${name}" (${category}). Language: ${currentLanguage === 'ha' ? 'Hausa' : 'English'}.`;
+            }
+
+            try {
+                const apiBase = "https://generativelanguage.googleapis.com";
+                const version = "v1beta";
+                const model = "models/gemini-pro"; 
+                const action = "generateContent";
+                const finalUrl = apiBase + "/" + version + "/" + model + ":" + action + "?key=" + geminiApiKey;
+
+                const response = await fetch(finalUrl, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ contents: [{ parts: [{ text: prompt }] }] }),
+                    cache: 'no-store'
+                });
+                
+                const data = await response.json();
+                if(data.error) throw new Error(data.error.message);
+                
+                const text = data.candidates[0].content.parts[0].text;
+                const descBox = document.getElementById('description');
+                descBox.value = descBox.value ? descBox.value + "\n\n" + text : text;
+                
+                if (type === 'ad') {
+                     const modal = document.getElementById('ai-modal');
+                     const modalContent = document.getElementById('modal-content');
+                     if(modal && modalContent) {
+                         modalContent.innerText = text;
+                         modal.classList.remove('hidden');
+                     }
+                }
+
+            } catch (error) {
+                console.error(error);
+                alert("Matsala: " + error.message);
+            } finally {
+                btn.innerHTML = originalText;
+                btn.disabled = false;
+            }
+        }
+        window.generateAIContent = generateAIContent;
+
+        // Declare DOM elements
+        let langSwitcher, searchBar, homePage, favoritesPage, favoritesList, noFavoritesText,
+            detailPageContainer, detailContent, adminPage, dealSection, dealProductContainer,
+            featuredContainer, latestContainer, featuredWrapper, latestWrapper, emptyState,
+            manageProductsList, logo, favoritesNavButton, favCount,
+            backButton, backButtonFav, backButtonAdmin, categoryNav, aiModal, modalContent,
+            copyModalBtn, closeModalBtn, recentlyViewedSection, recentlyViewedContainer,
+            filterBtn, filterModal, applyFiltersBtn, clearFiltersBtn, minPriceInput,
+            maxPriceInput, marketFilterOptions, loadingIndicator, connectionStatus,
+            userIdDisplay, closeFilterBtn, cartNavButton, cartCount, cartPage, backButtonCart, 
+            cartItemsContainer, cartSummary, cartTotalPrice, noCartItemsEl, sendOrderBtn, voiceSearchBtn,
+            adminWhatsappInput, loginModal, emailInput, passInput, performLoginBtn, cancelLoginBtn,
+            aboutPage, contactPage, privacyPage, termsPage, openMenuBtn, closeMenuBtn, mobileMenuOverlay, menuAdminBtn;
+
+        // --- SKELETON LOADING FUNCTION ---
+        function getSkeletonHTML() {
+            return `
+                <div class="skeleton bg-white rounded-lg shadow-md overflow-hidden h-64 flex flex-col">
+                    <div class="h-32 w-full bg-slate-200"></div>
+                    <div class="p-3 flex-1 flex flex-col justify-center gap-2">
+                        <div class="skeleton-text bg-slate-200 w-3/4 rounded"></div>
+                        <div class="skeleton-text bg-slate-200 w-1/2 rounded"></div>
+                        <div class="skeleton-text bg-slate-200 w-1/3 rounded mt-auto"></div>
+                    </div>
+                </div>
+            `;
+        }
+
+        // --- HELPER FUNCTIONS ---
+        function showLoading(message = "Loading...") {
+             const indicator = document.getElementById('loading-indicator');
+             if (indicator) {
+                 indicator.classList.remove('hidden');
+                 indicator.classList.remove('fade-out');
+             }
+        }
+        
+        function hideLoading() {
+             const indicator = document.getElementById('loading-indicator');
+             if (indicator) {
+                 indicator.classList.add('fade-out');
+             }
+             document.body.classList.add('loaded');
+        }
+        
+        function updateLanguage() {
+             const t = translations[currentLanguage];
+             document.querySelectorAll('[data-key]').forEach(el => {
+                 const key = el.dataset.key;
+                 const text = translations[currentLanguage][key];
+                 if (text) {
+                     if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+                         el.placeholder = text;
+                     } else {
+                         el.innerHTML = text; 
+                     }
+                 }
+             });
+             if(langSwitcher) langSwitcher.textContent = currentLanguage === 'ha' ? 'EN' : 'HA';
+             renderAllContent();
+             const adminPage = document.getElementById('admin-page');
+             if (adminPage && !adminPage.classList.contains('hidden')) {
+                 renderAdminForm();
+             }
+        }
+        
+        function saveLocalData() {
+             try {
+                 localStorage.setItem('bataGsmRecentlyViewed_v3_fs', JSON.stringify(recentlyViewedIds));
+                 localStorage.setItem('bataGsmFavorites_v3_fs', JSON.stringify(userFavorites));
+                 localStorage.setItem('bataGsmCart_v3_fs', JSON.stringify(userCart));
+             } catch (e) {}
+         }
+
+         function loadLocalData() {
+             try {
+                 const savedRecentlyViewed = localStorage.getItem('bataGsmRecentlyViewed_v3_fs');
+                 recentlyViewedIds = savedRecentlyViewed ? JSON.parse(savedRecentlyViewed) : [];
+                 const savedFavorites = localStorage.getItem('bataGsmFavorites_v3_fs');
+                 userFavorites = savedFavorites ? JSON.parse(savedFavorites) : [];
+                 const savedCart = localStorage.getItem('bataGsmCart_v3_fs');
+                 userCart = savedCart ? JSON.parse(savedCart) : []; 
+             } catch (e) { recentlyViewedIds = []; userFavorites = []; userCart = []; }
+         }
+
+        // --- SEO & ROUTING LOGIC ---
+        function slugify(text) {
+            return text.toString().toLowerCase()
+                .replace(/\s+/g, '-')
+                .replace(/[^\w\-]+/g, '')
+                .replace(/\-\-+/g, '-')
+                .replace(/^-+/, '')
+                .replace(/-+$/, '');
+        }
+
+        function updateSEO(product) {
+            if (!product) return;
+            const fullUrl = `https://www.batagsm.com.ng/product/${slugify(product.name)}`;
+            
+            document.title = `${product.name} | Bata GSM Online`;
+            document.getElementById('canonical-url').href = fullUrl;
+            
+            document.getElementById('og-title').content = product.name;
+            document.getElementById('og-description').content = product.description;
+            document.getElementById('og-image').content = product.imageLink;
+            document.getElementById('og-url').content = fullUrl;
+            
+            document.getElementById('twitter-title').content = product.name;
+            document.getElementById('twitter-description').content = product.description;
+            document.getElementById('twitter-image').content = product.imageLink;
+
+            const productSchema = {
+                "@context": "https://schema.org/",
+                "@type": "Product",
+                "name": product.name,
+                "image": product.imageLink,
+                "description": product.description,
+                "sku": product.id,
+                "offers": {
+                    "@type": "Offer",
+                    "url": fullUrl,
+                    "priceCurrency": "NGN",
+                    "price": product.price,
+                    "availability": "https://schema.org/InStock",
+                    "seller": {
+                        "@type": "Organization",
+                        "name": product.sellerName
+                    }
+                }
+            };
+            document.getElementById('product-schema').textContent = JSON.stringify(productSchema);
+        }
+
+        // Mock Analytics Function
+        async function trackEvent(eventName, eventData) {
+            try {
+                if (db && appId) {
+                    await fbAddDoc(fbCollection(db, `/artifacts/${appId}/public/data/analytics`), {
+                        event: eventName,
+                        data: eventData,
+                        timestamp: fbServerTimestamp()
+                    });
+                }
+            } catch (e) { console.log('Analytics unrecorded:', e); }
+        }
+
+        // Handle path on load for deep-linking
+        function checkURLForDeepLink() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const pathName = window.location.pathname;
+            let productSlug = urlParams.get('product');
+
+            if (pathName.includes('/product/')) {
+                productSlug = pathName.split('/product/')[1];
+            }
+
+            if (productSlug && isDataLoaded) {
+                const product = products.find(p => slugify(p.name) === productSlug || p.id === productSlug);
+                if (product) {
+                    showProductDetail(product.id, false);
+                }
+            }
+        }
+        
+        // --- NAVIGATION & PAGE DISPLAY FUNCTIONS ---
+        function showHomePage() {
+            history.pushState(null, '', '/');
+            document.title = "Bata Gsm Online - Secure Marketplace";
+            
+            document.getElementById('home-page').classList.remove('hidden');
+            document.getElementById('detail-page-container').classList.add('hidden');
+            document.getElementById('admin-page').classList.add('hidden');
+            document.getElementById('favorites-page').classList.add('hidden');
+            document.getElementById('cart-page').classList.add('hidden');
+            document.getElementById('login-modal').classList.add('hidden');
+            document.getElementById('about-page').classList.add('hidden');
+            document.getElementById('contact-page').classList.add('hidden');
+            document.getElementById('privacy-page').classList.add('hidden');
+            document.getElementById('terms-page').classList.add('hidden');
+            document.getElementById('mobile-menu-overlay').classList.add('hidden');
+            
+            window.scrollTo(0, 0);
+            renderAllContent(); 
+        }
+
+        function showAboutPage() {
+            hideAllPages();
+            document.getElementById('about-page').classList.remove('hidden');
+            window.scrollTo(0, 0);
+        }
+
+        function showContactPage() {
+            hideAllPages();
+            document.getElementById('contact-page').classList.remove('hidden');
+            window.scrollTo(0, 0);
+        }
+
+        function showPrivacyPage() {
+            hideAllPages();
+            document.getElementById('privacy-page').classList.remove('hidden');
+            window.scrollTo(0, 0);
+        }
+
+        function showTermsPage() {
+            hideAllPages();
+            document.getElementById('terms-page').classList.remove('hidden');
+            window.scrollTo(0, 0);
+        }
+
+        function hideAllPages() {
+             document.getElementById('home-page').classList.add('hidden');
+             document.getElementById('detail-page-container').classList.add('hidden');
+             document.getElementById('admin-page').classList.add('hidden');
+             document.getElementById('favorites-page').classList.add('hidden');
+             document.getElementById('cart-page').classList.add('hidden');
+             document.getElementById('about-page').classList.add('hidden');
+             document.getElementById('contact-page').classList.add('hidden');
+             document.getElementById('privacy-page').classList.add('hidden');
+             document.getElementById('terms-page').classList.add('hidden');
+             document.getElementById('mobile-menu-overlay').classList.add('hidden');
+        }
+
+        function showFavoritesPage() {
+            hideAllPages();
+            document.getElementById('favorites-page').classList.remove('hidden');
+            renderFavorites(); 
+            window.scrollTo(0, 0);
+        }
+
+        function showCartPage() {
+            hideAllPages();
+            document.getElementById('cart-page').classList.remove('hidden'); 
+            renderCartItems(); 
+            window.scrollTo(0, 0);
+        }
+
+        // --- ADMIN AUTH & LOGIC ---
+        function showAdminPage() {
+            document.getElementById('mobile-menu-overlay').classList.add('hidden');
+            if (isAdminAuthenticated) {
+                revealAdminContent();
+            } else {
+                document.getElementById('login-modal').classList.remove('hidden');
+                document.getElementById('admin-email-input').value = '';
+                document.getElementById('admin-pass-input').value = '';
+                document.getElementById('admin-email-input').focus();
+            }
+        }
+
+        async function handleAdminLogin() {
+            const email = document.getElementById('admin-email-input').value;
+            const pass = document.getElementById('admin-pass-input').value;
+
+            if (!email || !pass) {
+                alert("Da fatan za a saka Email da Password.");
+                return;
+            }
+            
+            showLoading();
+            try {
+                await signOut(auth);
+                await signInWithEmailAndPassword(auth, email, pass);
+                isAdminAuthenticated = true;
+                document.getElementById('login-modal').classList.add('hidden');
+                revealAdminContent();
+            } catch (e) {
+                console.error(e);
+                alert("Ba a sami damar shiga ba. Duba Email ko Password dinka.");
+                await fbSignInAnonymously(auth);
+            } finally {
+                hideLoading();
+            }
+        }
+
+        function revealAdminContent() {
+            if (!isAdminAuthenticated) return;
+            hideAllPages();
+            document.getElementById('admin-page').classList.remove('hidden');
+            
+            if(document.getElementById('admin-whatsapp-input')) {
+                document.getElementById('admin-whatsapp-input').value = adminWhatsAppNumber;
+            }
+            renderAdminForm(); 
+            renderAdminProductList(); 
+            window.scrollTo(0, 0);
+        }
+
+        // --- CART & FAVORITE LOGIC ---
+        function isFavorite(productId) { return userFavorites.includes(String(productId)); }
+        
+        function toggleFavorite(productId) {
+             const id = String(productId); 
+             if (isFavorite(id)) userFavorites = userFavorites.filter(favId => favId !== id);
+             else if (!userFavorites.includes(id)) userFavorites.push(id);
+             saveLocalData(); 
+             renderAllContent();
+         }
+        
+        function addToCart(productId) { 
+            const id = String(productId);
+            const t = translations[currentLanguage];
+            const existingItem = userCart.find(item => item.id === id);
+            if (existingItem) existingItem.quantity++; else userCart.push({ id: id, quantity: 1 });
+            saveLocalData(); updateCartCount(); alert(t.cart_added); 
+            trackEvent('cart_add', { productId: id });
+        }
+        
+        function updateCartQuantity(productId, change) {
+            const id = String(productId);
+            const itemIndex = userCart.findIndex(item => item.id === id);
+            const t = translations[currentLanguage];
+            if (itemIndex > -1) {
+                userCart[itemIndex].quantity += change;
+                if (userCart[itemIndex].quantity <= 0) { userCart.splice(itemIndex, 1); alert(t.cart_item_removed); }
+                saveLocalData(); renderCartItems(); updateCartCount(); 
+            }
+        }
+
+        function updateCartCount() {
+            const cartCountEl = document.getElementById('cart-count');
+            if (cartCountEl) {
+                const count = userCart.reduce((sum, item) => sum + item.quantity, 0);
+                cartCountEl.textContent = count;
+                if (count > 0) cartCountEl.classList.remove('hidden');
+                else cartCountEl.classList.add('hidden');
+            }
+        }
+        
+        function updateFavCount() {
+            const favCountEl = document.getElementById('fav-count');
+            if (favCountEl) {
+                const count = userFavorites.length;
+                favCountEl.textContent = count;
+                if (count > 0) favCountEl.classList.remove('hidden');
+                else favCountEl.classList.add('hidden');
+            }
+        }
+
+        // --- SETTINGS LOGIC ---
+        async function saveSettings(type) {
+            let updateData = { updatedAt: fbServerTimestamp() };
+            if (type === 'whatsapp') {
+                const input = document.getElementById('admin-whatsapp-input');
+                const newNumber = input.value.replace(/\D/g, ''); 
+                if (!newNumber || newNumber.length < 10) return alert("Lambar ba daidai ba.");
+                updateData.whatsappNumber = newNumber;
+                adminWhatsAppNumber = newNumber;
+            }
+            
+            showLoading();
+            try {
+                await fbSetDoc(fbDoc(db, `/artifacts/${appId}/public/data/settings`, 'general'), updateData, { merge: true });
+                alert("An ajiye settings!");
+            } catch (e) {
+                console.error(e);
+                alert("Kuskure wajen ajiye bayanai.");
+            } finally {
+                hideLoading();
+            }
+        }
+
+        async function loadSettings() {
+            try {
+                const docSnap = await fbGetDoc(fbDoc(db, `/artifacts/${appId}/public/data/settings`, 'general'));
+                if (docSnap.exists()) {
+                    const data = docSnap.data();
+                    if (data.whatsappNumber) adminWhatsAppNumber = data.whatsappNumber;
+                }
+            } catch (e) {}
+        }
+
+        // --- WHATSAPP LOGIC ---
+        function sendWhatsAppOrder() {
+            if (userCart.length === 0) return;
+            trackEvent('whatsapp_click_order', { totalItems: userCart.length });
+
+            const groupedItems = {};
+            let grandTotal = 0;
+
+            userCart.forEach(cartItem => {
+                const product = products.find(p => p.id === cartItem.id);
+                if (product) {
+                    const seller = product.sellerName || "Bata GSM Store";
+                    if (!groupedItems[seller]) groupedItems[seller] = [];
+                    groupedItems[seller].push({ ...product, quantity: cartItem.quantity });
+                    grandTotal += product.price * cartItem.quantity;
+                }
+            });
+
+            let message = `*_Assalamu alaikum, Ina so in yi odar waɗannan kayan daga Bata GSM Online:_*\n\n`;
+
+            for (const [seller, items] of Object.entries(groupedItems)) {
+                message += `*Daga Shagon: ${seller}*\n`;
+                items.forEach(item => { message += ` - ${item.quantity} x ${item.name} (@ ₦${item.price.toLocaleString()})\n`; });
+                message += `\n`;
+            }
+            message += `*Jimilla Gaba ɗaya: ₦${grandTotal.toLocaleString()}*`;
+            
+            const whatsappUrl = `https://wa.me/${adminWhatsAppNumber}?text=${encodeURIComponent(message)}`;
+            window.open(whatsappUrl, '_blank');
+        }
+
+        // --- RENDER LOGIC ---
+        function createDealCard(product) { 
+            return `<div class="bg-white rounded-lg shadow-lg overflow-hidden flex flex-col md:flex-row deal-of-the-week-banner mb-4"><div class="md:w-2/5 cursor-pointer relative" onclick="window.showProductDetail('${product.id}')"><img src="${product.imageLink}" loading="lazy" class="w-full h-48 md:h-full object-cover"></div><div class="p-4 sm:p-6 text-white flex flex-col justify-center md:w-3/5 relative"><button class="favorite-btn absolute top-3 right-3 bg-white bg-opacity-30 rounded-full p-1.5 ${isFavorite(product.id) ? 'favorited' : ''}" onclick="window.toggleFavorite('${product.id}')"><i data-lucide="heart" class="w-4 h-4"></i></button><div class="cursor-pointer" onclick="window.showProductDetail('${product.id}')"><h3 class="text-2xl sm:text-3xl font-bold">${product.name}</h3>${createStarRatingDisplay(calculateAverageRating(product.reviews))}<p class="text-base sm:text-lg mt-2">${(product.description || '').substring(0, 80)}...</p><p class="text-3xl sm:text-4xl font-bold mt-3">₦${product.price.toLocaleString()}</p></div></div></div>`; 
+        }
+
+        function createProductCard(product) { 
+            return `<div class="bg-white rounded-lg shadow-md overflow-hidden transform hover:scale-[1.03] transition-transform duration-200 flex flex-col"><div class="relative"><div class="cursor-pointer aspect-square" onclick="window.showProductDetail('${product.id}')"><img src="${product.imageLink}" loading="lazy" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/400x400/eee/ccc?text=Img';">${product.status === 'Deal of the Week' ? `<div class="absolute top-0 left-0 bg-red-500 text-white text-[10px] font-bold px-1.5 py-0.5 rounded-br-lg">DEAL</div>` : ''}</div><button class="favorite-btn absolute top-1.5 right-1.5 bg-white bg-opacity-80 rounded-full p-1 shadow ${isFavorite(product.id) ? 'favorited' : ''}" onclick="window.toggleFavorite('${product.id}')"><i data-lucide="heart" class="w-4 h-4"></i></button></div><div class="p-2 sm:p-3 flex flex-col flex-1"><h3 class="font-semibold text-sm truncate cursor-pointer" onclick="window.showProductDetail('${product.id}')">${product.name}</h3>${createStarRatingDisplay(calculateAverageRating(product.reviews))}<p class="text-green-700 font-bold text-base mt-1">₦${product.price.toLocaleString()}</p><div class="mt-auto pt-1"><p class="text-xs text-slate-500 truncate cursor-pointer hover:underline flex items-center" onclick="window.showSellerPage('${product.sellerName}')"><i data-lucide="user" class="w-3 h-3 mr-1 text-slate-400 flex-shrink-0"></i><span class="truncate">${product.sellerName}</span> ${getVerifiedBadge(product.sellerVerified)}</p><p class="text-xs text-slate-500 font-medium mt-0.5 truncate">${product.market}</p></div></div></div>`; 
+        }
+
+        function renderProducts(filter = '', category = 'Duka', advancedFilters = {}) { 
+             const featuredContainer = document.getElementById('featured-products');
+             const latestContainer = document.getElementById('latest-products');
+             const dealProductContainer = document.getElementById('deal-of-the-week-product');
+             const dealSection = document.getElementById('deal-of-the-week-section');
+             const featuredWrapper = document.getElementById('featured-section-wrapper');
+             const latestWrapper = document.getElementById('latest-section-wrapper');
+             const emptyState = document.getElementById('empty-state');
+
+             if (!featuredContainer) return;
+
+             if (!isDataLoaded) {
+                 const skeletonHTML = getSkeletonHTML().repeat(4);
+                 featuredContainer.innerHTML = skeletonHTML;
+                 latestContainer.innerHTML = skeletonHTML;
+                 featuredWrapper.classList.remove('hidden');
+                 latestWrapper.classList.remove('hidden');
+                 dealSection.classList.add('hidden');
+                 emptyState.classList.add('hidden');
+                 return;
+             }
+
+             featuredContainer.innerHTML = '';
+             latestContainer.innerHTML = '';
+             dealProductContainer.innerHTML = '';
+
+             const filtered = products.filter(p => {
+                 const search = filter.toLowerCase();
+                 const matchesSearch = (p.name || '').toLowerCase().includes(search) || (p.sellerName || '').toLowerCase().includes(search) || (p.category || '').toLowerCase().includes(search);
+                 
+                 // Smart Category Filtering (Matches main groups like Accessories, Electronics, etc.)
+                 const isAll = category === 'Duka';
+                 const isTrending = category === 'Trending' && (p.reviews && p.reviews.length >= 3);
+                 const isPopular = category === 'Popular' && (p.views && p.views > 50);
+                 
+                 // Main Category groupings based on requested features
+                 const accessoriesCats = ['Screen Guard', 'Rigar Waya', 'Power Bank', 'Phone Cases', 'Screen Protectors', 'Chargers', 'USB Cables', 'OTG', 'Earphones', 'Headphones', 'Bluetooth Speakers', 'Smart Watches', 'Ring Lights', 'Tripods', 'Flash Drives', 'Memory Cards', 'Car Chargers', 'Phone Holders', 'Batteries', 'SIM Accessories', 'Accessories'];
+                 const electronicsCats = ['Smart TVs', 'Android TV Box', 'Desktop Computer', 'Monitor', 'Keyboard', 'Mouse', 'Printer', 'CCTV', 'Projector', 'Router', 'UPS', 'Gaming Console', 'Computer Accessories', 'Home Electronics', 'Electronics'];
+                 
+                 let matchesCat = isAll;
+                 if(!isAll) {
+                     if (category === 'Accessories') matchesCat = accessoriesCats.includes(p.category);
+                     else if (category === 'Electronics') matchesCat = electronicsCats.includes(p.category);
+                     else matchesCat = p.category === category;
+                 }
+                 if(isTrending || isPopular) matchesCat = true;
+
+                 const price = p.price || 0;
+                 const matchesPrice = (!advancedFilters.minPrice || price >= advancedFilters.minPrice) && (!advancedFilters.maxPrice || price <= advancedFilters.maxPrice);
+                 const matchesMarket = advancedFilters.markets.length === 0 || advancedFilters.markets.includes(p.market);
+                 
+                 return matchesSearch && matchesCat && matchesPrice && matchesMarket;
+             }).sort((a, b) => {
+                 const dateA = a.createdAt ? (a.createdAt.seconds * 1000) : Date.now();
+                 const dateB = b.createdAt ? (b.createdAt.seconds * 1000) : Date.now();
+                 return dateB - dateA;
+             });
+ 
+             let dealFound = false; let featuredCount = 0; let latestCount = 0;
+             const fragmentFeatured = document.createDocumentFragment();
+             const fragmentLatest = document.createDocumentFragment();
+             const tempDiv = document.createElement('div');
+
+             filtered.forEach(p => {
+                 tempDiv.innerHTML = createProductCard(p);
+                 const cardNode = tempDiv.firstElementChild;
+
+                 if (p.status === 'Deal of the Week' && !dealFound && category === 'Duka' && !filter) { 
+                     dealProductContainer.innerHTML = createDealCard(p); 
+                     dealFound = true; 
+                 }
+                 else if (p.status === 'Featured' || category === 'Trending' || category === 'Popular') { 
+                     fragmentFeatured.appendChild(cardNode); 
+                     featuredCount++; 
+                 }
+                 else { 
+                     fragmentLatest.appendChild(cardNode); 
+                     latestCount++; 
+                 }
+             });
+
+             featuredContainer.appendChild(fragmentFeatured);
+             latestContainer.appendChild(fragmentLatest);
+
+             dealSection.classList.toggle('hidden', !dealFound);
+             featuredWrapper.classList.toggle('hidden', featuredCount === 0);
+             latestWrapper.classList.toggle('hidden', latestCount === 0);
+             
+             if (isDataLoaded) {
+                 emptyState.classList.toggle('hidden', filtered.length > 0);
+             }
+
+             if (typeof lucide !== 'undefined') lucide.createIcons();
+        }
+        
+        function renderRecentlyViewed() { 
+            const recentlyViewedContainer = document.getElementById('recently-viewed-products');
+            const recentlyViewedSection = document.getElementById('recently-viewed-section');
+            if(!recentlyViewedContainer) return;
+            
+            recentlyViewedContainer.innerHTML = '';
+            const valid = recentlyViewedIds.map(id => products.find(p => p.id === id)).filter(p => p);
+            
+            if (valid.length > 0) { 
+                valid.forEach(p => recentlyViewedContainer.innerHTML += createProductCard(p)); 
+                recentlyViewedSection.classList.remove('hidden'); 
+            } else { 
+                recentlyViewedSection.classList.add('hidden'); 
+            }
+        }
+
+        function renderFavorites() {
+            const list = document.getElementById('favorites-list');
+            const noFav = document.getElementById('no-favorites');
+            if (!list) return;
+            list.innerHTML = '';
+            
+            const favProducts = products.filter(p => userFavorites.includes(p.id));
+            if (favProducts.length > 0) {
+                favProducts.forEach(p => list.innerHTML += createProductCard(p));
+                noFav.classList.add('hidden');
+            } else {
+                noFav.classList.remove('hidden');
+            }
+            if (typeof lucide !== 'undefined') lucide.createIcons();
+        }
+
+        function renderCartItems() {
+             const container = document.getElementById('cart-items-container');
+             const summary = document.getElementById('cart-summary');
+             const noCart = document.getElementById('no-cart-items');
+             const totalEl = document.getElementById('cart-total-price');
+             if (!container) return;
+             
+             container.innerHTML = '';
+             let total = 0;
+             let hasItems = false;
+             
+             userCart.forEach(item => {
+                 const product = products.find(p => p.id === item.id);
+                 if (product) {
+                     hasItems = true;
+                     total += product.price * item.quantity;
+                     container.innerHTML += `
+                        <div class="flex justify-between items-center bg-white p-3 rounded-lg shadow-sm border border-slate-200">
+                             <div class="flex items-center space-x-3">
+                                 <img src="${product.imageLink}" class="w-16 h-16 object-cover rounded-md">
+                                 <div>
+                                     <h4 class="font-bold text-sm sm:text-base">${product.name}</h4>
+                                     <p class="text-green-600 font-bold text-xs sm:text-sm">₦${product.price.toLocaleString()}</p>
+                                 </div>
+                             </div>
+                             <div class="flex items-center space-x-2">
+                                 <button class="bg-slate-200 text-slate-700 w-6 h-6 rounded flex items-center justify-center font-bold" onclick="window.updateCartQuantity('${item.id}', -1)">-</button>
+                                 <span class="font-bold text-sm">${item.quantity}</span>
+                                 <button class="bg-slate-200 text-slate-700 w-6 h-6 rounded flex items-center justify-center font-bold" onclick="window.updateCartQuantity('${item.id}', 1)">+</button>
+                             </div>
+                         </div>`;
+                 }
+             });
+             
+             if(hasItems) {
+                 summary.classList.remove('hidden');
+                 noCart.classList.add('hidden');
+                 totalEl.textContent = '₦' + total.toLocaleString();
+             } else {
+                 summary.classList.add('hidden');
+                 noCart.classList.remove('hidden');
+             }
+        }
+
+        function renderAllContent() {
+             const searchVal = document.getElementById('search-bar')?.value || '';
+             renderProducts(searchVal, currentCategory, currentFilters);
+             renderRecentlyViewed();
+             updateCartCount();
+             updateFavCount();
+        }
+        
+        function updateConnectionStatus() {
+             const statusEl = document.getElementById('connection-status');
+             if (statusEl) {
+                 const browserOffline = !navigator.onLine;
+                 if (browserOffline || (isOffline && browserOffline)) {
+                     statusEl.classList.remove('hidden');
+                 } else {
+                     statusEl.classList.add('hidden');
+                 }
+             }
+        }
+
+        // --- ADMIN FORM RENDERING ---
+        function renderAdminForm(product = null) {
+            const t = translations[currentLanguage];
+            const form = document.getElementById('add-product-form');
+            form.innerHTML = `
+                <input type="hidden" id="productId">
+                
+                <div>
+                    <label class="block text-xs font-medium mb-1">${t.admin_product_name}</label>
+                    <input type="text" id="productName" class="w-full p-2 border rounded-md" required>
+                </div>
+                
+                <div class="mt-4">
+                    <label class="block text-xs font-medium mb-1">${t.admin_product_desc}</label>
+                    <textarea id="description" class="w-full p-2 border rounded-md" rows="4" required></textarea>
+                </div>
+
+                <div class="flex space-x-2 mt-2 mb-4">
+                    <button type="button" id="gen-desc-btn" onclick="window.generateAIContent('desc')" class="bg-purple-600 text-white text-[10px] px-3 py-1.5 rounded-full flex items-center shadow-sm">
+                        <i data-lucide="sparkles" class="w-3 h-3 mr-1"></i> ${t.admin_gen_desc}
+                    </button>
+                    <button type="button" id="gen-ad-btn" onclick="window.generateAIContent('ad')" class="bg-blue-600 text-white text-[10px] px-3 py-1.5 rounded-full flex items-center shadow-sm">
+                        <i data-lucide="megaphone" class="w-3 h-3 mr-1"></i> ${t.admin_gen_slogan}
+                    </button>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-medium mb-1">${t.admin_price}</label>
+                    <input type="number" id="price" class="w-full p-2 border rounded-md" required>
+                </div>
+
+                <div class="mt-4">
+                    <label class="block text-xs font-medium mb-1">${t.admin_image_link}</label>
+                    <input type="url" id="imageLink" class="w-full p-2 border rounded-md" required>
+                </div>
+
+                <div class="grid grid-cols-2 gap-4 mt-4">
+                    <div>
+                        <label class="block text-xs font-medium mb-1">${t.admin_seller_name}</label>
+                        <input type="text" id="sellerName" class="w-full p-2 border rounded-md" required>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-medium mb-1">${t.admin_seller_phone}</label>
+                        <input type="tel" id="sellerPhone" class="w-full p-2 border rounded-md" required>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-2 gap-4 mt-4">
+                    <div>
+                        <label class="block text-xs font-medium mb-1">${t.admin_market}</label>
+                        <select id="market" class="w-full p-2 border rounded-md">
+                            <option value="S.Barau House bata">S.Barau House bata</option>
+                            <option value="Gidan Baba nabegu">Gidan Baba nabegu</option>
+                            <option value="Me karami Plaza">Me karami Plaza</option>
+                            <option value="Beirut market">Beirut market</option>
+                            <option value="Farm Center">Farm Center</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-medium mb-1">${t.admin_category}</label>
+                        <select id="category" class="w-full p-2 border rounded-md">
+                            <optgroup label="Phones & Laptops">
+                                <option value="Wayoyi">Wayoyi</option>
+                                <option value="Laptops">Laptops</option>
+                            </optgroup>
+                            <optgroup label="Accessories">
+                                <option value="Phone Cases">Phone Cases</option>
+                                <option value="Screen Protectors">Screen Protectors</option>
+                                <option value="Chargers">Chargers</option>
+                                <option value="USB Cables">USB Cables</option>
+                                <option value="OTG">OTG</option>
+                                <option value="Power Bank">Power Bank</option>
+                                <option value="Earphones">Earphones</option>
+                                <option value="Headphones">Headphones</option>
+                                <option value="Bluetooth Speakers">Bluetooth Speakers</option>
+                                <option value="Smart Watches">Smart Watches</option>
+                                <option value="Ring Lights">Ring Lights</option>
+                                <option value="Tripods">Tripods</option>
+                                <option value="Flash Drives">Flash Drives</option>
+                                <option value="Memory Cards">Memory Cards</option>
+                                <option value="Car Chargers">Car Chargers</option>
+                                <option value="Phone Holders">Phone Holders</option>
+                                <option value="Batteries">Batteries</option>
+                                <option value="SIM Accessories">SIM Accessories</option>
+                                <option value="Accessories">Other Accessories</option>
+                            </optgroup>
+                            <optgroup label="Electronics">
+                                <option value="Smart TVs">Smart TVs</option>
+                                <option value="Android TV Box">Android TV Box</option>
+                                <option value="Desktop Computer">Desktop Computer</option>
+                                <option value="Monitor">Monitor</option>
+                                <option value="Keyboard">Keyboard</option>
+                                <option value="Mouse">Mouse</option>
+                                <option value="Printer">Printer</option>
+                                <option value="CCTV">CCTV</option>
+                                <option value="Projector">Projector</option>
+                                <option value="Router">Router</option>
+                                <option value="UPS">UPS</option>
+                                <option value="Gaming Console">Gaming Console</option>
+                                <option value="Computer Accessories">Computer Accessories</option>
+                                <option value="Home Electronics">Home Electronics</option>
+                                <option value="Electronics">Other Electronics</option>
+                            </optgroup>
+                            <optgroup label="Others">
+                                <option value="Kayan Gyara">Kayan Gyara</option>
+                                <option value="Kayan Sari">Kayan Sari</option>
+                            </optgroup>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="mt-4">
+                    <label class="block text-xs font-medium mb-1">${t.admin_status}</label>
+                    <select id="status" class="w-full p-2 border rounded-md">
+                        <option value="Normal">Normal</option>
+                        <option value="Featured">Featured</option>
+                        <option value="Deal of the Week">Deal</option>
+                    </select>
+                </div>
+
+                <div class="flex items-center space-x-2 mt-4">
+                    <input type="checkbox" id="sellerVerified">
+                    <label class="text-xs">${t.admin_verified_seller}</label>
+                </div>
+
+                <button type="submit" class="w-full bg-green-600 text-white font-bold py-3 rounded-lg mt-6 shadow-md uppercase text-sm">${t.admin_save_button}</button>
+            `;
+            
+            if(product) {
+                form.querySelector('#productId').value = product.id;
+                form.querySelector('#productName').value = product.name;
+                form.querySelector('#description').value = product.description;
+                form.querySelector('#price').value = product.price;
+                form.querySelector('#imageLink').value = product.imageLink;
+                form.querySelector('#sellerName').value = product.sellerName;
+                form.querySelector('#sellerPhone').value = product.sellerPhone;
+                form.querySelector('#market').value = product.market;
+                form.querySelector('#category').value = product.category;
+                form.querySelector('#status').value = product.status;
+                form.querySelector('#sellerVerified').checked = product.sellerVerified;
+            }
+            form.onsubmit = handleFormSubmit;
+            if (typeof lucide !== 'undefined') lucide.createIcons();
+        }
+
+        function renderAdminProductList() {
+            const list = document.getElementById('manage-products-list');
+            if (!list) return;
+            list.innerHTML = '';
+            products.forEach(p => {
+                list.innerHTML += `
+                    <div class="flex justify-between items-center bg-white p-3 rounded-lg border mb-2">
+                        <div class="flex items-center space-x-3">
+                            <img src="${p.imageLink}" class="w-10 h-10 rounded-md object-cover" loading="lazy">
+                            <div>
+                                <p class="font-bold text-sm">${p.name}</p>
+                                <p class="text-xs text-gray-500">₦${p.price.toLocaleString()}</p>
+                            </div>
+                        </div>
+                        <div class="flex space-x-2">
+                            <button onclick="window.editProduct('${p.id}')" class="bg-yellow-500 text-white p-1.5 rounded text-xs">Edit</button>
+                            <button onclick="window.deleteProduct('${p.id}')" class="bg-red-500 text-white p-1.5 rounded text-xs">Delete</button>
+                        </div>
+                    </div>`;
+            });
+        }
+        
+        async function handleFormSubmit(e) {
+            e.preventDefault();
+            const form = e.target;
+            const id = form.querySelector('#productId').value;
+            const data = {
+                name: form.querySelector('#productName').value,
+                description: form.querySelector('#description').value,
+                price: parseFloat(form.querySelector('#price').value),
+                imageLink: form.querySelector('#imageLink').value,
+                sellerName: form.querySelector('#sellerName').value,
+                sellerPhone: form.querySelector('#sellerPhone').value,
+                market: form.querySelector('#market').value,
+                category: form.querySelector('#category').value,
+                status: form.querySelector('#status').value,
+                sellerVerified: form.querySelector('#sellerVerified').checked,
+                lastUpdated: fbServerTimestamp()
+            };
+            showLoading(); 
+            try {
+                if (id) { 
+                    await fbUpdateDoc(fbDoc(productsCollectionRef, id), data); 
+                    alert("An gyara!"); 
+                } else { 
+                    data.createdAt = fbServerTimestamp(); 
+                    data.reviews = []; 
+                    data.views = 0;
+                    await fbAddDoc(productsCollectionRef, data); 
+                    alert("An saka!"); 
+                }
+                form.reset();
+            } catch(err) { 
+                console.error(err); 
+                alert("Kuskure!"); 
+            } finally { 
+                hideLoading(); 
+            }
+        }
+
+        // --- SHOW DETAIL PAGE (WITH DEEP LINKING & STICKY BTNS) ---
+        function showProductDetail(productId, pushHistory = true) {
+             const product = products.find(p => p.id === productId); 
+             if (!product) return;
+             
+             // Track View
+             trackEvent('product_view', { productId: product.id, productName: product.name });
+             
+             // Dynamic Routing (URL modification)
+             const productSlug = slugify(product.name);
+             if (pushHistory) {
+                 history.pushState({ id: product.id }, product.name, `/product/${productSlug}`);
+             }
+             updateSEO(product);
+
+             recentlyViewedIds = [productId, ...recentlyViewedIds.filter(id => id !== productId)].slice(0, 4); 
+             saveLocalData();
+             
+             const detailContent = document.getElementById('detail-content');
+             const t = translations[currentLanguage];
+             
+             let reviewsHtml = '';
+             if (product.reviews && product.reviews.length > 0) {
+                 product.reviews.forEach(r => {
+                     reviewsHtml += `<div class="border-b pb-2 mb-2"><div class="flex justify-between"><h4 class="font-bold text-sm">${r.name || 'User'}</h4>${createStarRating(r.rating)}</div><p class="text-xs text-slate-500">${r.comment}</p></div>`;
+                 });
+             } else {
+                 reviewsHtml = `<p class="text-slate-500 text-sm italic">${t.no_reviews_yet}</p>`;
+             }
+             
+             const fullUrl = `https://www.batagsm.com.ng/product/${productSlug}`;
+
+             detailContent.innerHTML = `
+                <div class="relative mb-4">
+                    <img src="${product.imageLink}" class="w-full h-64 object-cover rounded-lg" loading="eager">
+                    <button class="favorite-btn absolute top-3 right-3 bg-white p-2 rounded-full shadow ${isFavorite(productId)?'favorited':''}" onclick="window.toggleFavorite('${productId}')">
+                        <i data-lucide="heart" class="w-5 h-5"></i>
+                    </button>
+                </div>
+                <h2 class="text-2xl font-bold">${product.name}</h2>
+                <div class="flex items-center space-x-2 mt-1">
+                    ${createStarRatingDisplay(calculateAverageRating(product.reviews))}
+                </div>
+                <p class="text-3xl font-bold text-green-700 my-2">₦${product.price.toLocaleString()}</p>
+                
+                <div class="flex gap-2 my-4">
+                    <button class="flex-1 bg-green-600 text-white font-bold py-3 rounded-lg flex justify-center items-center gap-2 hover:bg-green-700 shadow" onclick="window.addToCart('${productId}')">
+                        <i data-lucide="shopping-cart" class="w-5 h-5"></i> ${t.add_to_cart}
+                    </button>
+                </div>
+                
+                <div class="flex gap-2 mb-4 justify-between bg-white border border-slate-100 p-2 rounded-lg shadow-sm">
+                    <button onclick="window.shareProduct('${product.name}', '${fullUrl}')" class="flex-1 flex justify-center items-center gap-2 text-sm text-slate-600 hover:text-green-600 font-medium py-2">
+                        <i data-lucide="share-2" class="w-4 h-4"></i> <span data-key="share_product">${t.share_product}</span>
+                    </button>
+                    <div class="w-px bg-slate-200"></div>
+                    <button onclick="window.copyToClipboard('${fullUrl}')" class="flex-1 flex justify-center items-center gap-2 text-sm text-slate-600 hover:text-green-600 font-medium py-2">
+                        <i data-lucide="copy" class="w-4 h-4"></i> <span data-key="copy_link">${t.copy_link}</span>
+                    </button>
+                </div>
+                
+                <div class="border-t pt-4"><p class="text-slate-700 leading-relaxed">${product.description}</p></div>
+                
+                <div class="border-t pt-4 mt-4 bg-slate-50 p-4 rounded-lg">
+                    <p class="mb-1 text-sm text-slate-500 uppercase tracking-wide font-bold" data-key="seller_info_title">${t.seller_info_title}</p>
+                    <p class="font-medium"><i data-lucide="user" class="inline w-4 h-4 text-slate-400"></i> ${product.sellerName} ${getVerifiedBadge(product.sellerVerified)}</p>
+                    <p class="text-sm mt-1 text-slate-600"><i data-lucide="map-pin" class="inline w-4 h-4 text-slate-400"></i> ${product.market}</p>
+                </div>
+                
+                <div class="grid grid-cols-2 gap-3 mt-4 mb-6">
+                    <a href="tel:${product.sellerPhone}" class="bg-blue-500 text-white py-3 rounded-lg text-center block font-bold shadow hover:bg-blue-600 flex justify-center items-center gap-2">
+                        <i data-lucide="phone-call" class="w-5 h-5"></i><span data-key="call_seller">${t.call_seller}</span>
+                    </a>
+                    <a href="https://wa.me/234${product.sellerPhone.replace(/\D/g,'').slice(-10)}" target="_blank" class="bg-green-500 text-white py-3 rounded-lg text-center block font-bold shadow hover:bg-green-600 flex justify-center items-center gap-2">
+                        <i data-lucide="message-circle" class="w-5 h-5"></i><span data-key="whatsapp_seller">${t.whatsapp_seller}</span>
+                    </a>
+                </div>
+                
+                <div class="border-t pt-6 mt-6">
+                    <h3 class="text-xl font-bold mb-4">${t.reviews_title}</h3>
+                    <div class="mb-4 max-h-40 overflow-y-auto">${reviewsHtml}</div>
+                    
+                    <div class="bg-slate-50 p-4 rounded-lg border border-slate-200">
+                         <input type="text" id="review-name" placeholder="${t.your_name}" class="w-full p-2 border rounded mb-2 text-sm">
+                         <div class="rating-input mb-2 flex justify-end">
+                            <input type="radio" name="rating" id="star5" value="5"><label for="star5">★</label>
+                            <input type="radio" name="rating" id="star4" value="4"><label for="star4">★</label>
+                            <input type="radio" name="rating" id="star3" value="3"><label for="star3">★</label>
+                            <input type="radio" name="rating" id="star2" value="2"><label for="star2">★</label>
+                            <input type="radio" name="rating" id="star1" value="1"><label for="star1">★</label>
+                         </div>
+                         <textarea id="review-comment" placeholder="${t.your_comment}" class="w-full p-2 border rounded mb-2 text-sm"></textarea>
+                         <button onclick="window.submitReview('${productId}')" class="bg-slate-800 text-white px-4 py-2 rounded text-sm w-full font-bold shadow">${t.submit_review}</button>
+                    </div>
+                </div>
+                
+                <!-- Sticky Action Bar for Mobile Conversions -->
+                <div class="sticky-action-bar visible" id="sticky-bar">
+                    <div class="flex flex-col">
+                        <span class="text-[10px] text-slate-500 font-bold uppercase">Total Price</span>
+                        <span class="font-bold text-green-700 text-lg">₦${product.price.toLocaleString()}</span>
+                    </div>
+                    <button onclick="window.addToCart('${productId}')" class="bg-green-600 text-white px-6 py-2 rounded-lg font-bold shadow-lg hover:bg-green-700 flex items-center gap-2">
+                        <i data-lucide="shopping-cart" class="w-4 h-4"></i> ${t.add_to_cart}
+                    </button>
+                </div>
+             `;
+             
+             hideAllPages();
+             document.getElementById('detail-page-container').classList.remove('hidden');
+             window.scrollTo(0, 0); 
+             if (typeof lucide !== 'undefined') lucide.createIcons();
+        }
+
+        // --- BROWSER HISTORY LOGIC ---
+        window.addEventListener('popstate', (e) => {
+            if (e.state && e.state.id) {
+                showProductDetail(e.state.id, false);
+            } else {
+                showHomePage();
+            }
+        });
+
+        // --- NEW BUTTON ACTIONS ---
+        window.shareProduct = async (name, url) => {
+            trackEvent('share_click', { url });
+            if (navigator.share) {
+                try {
+                    await navigator.share({
+                        title: `${name} | Bata GSM Online`,
+                        text: `Check out ${name} on Bata GSM Online!`,
+                        url: url
+                    });
+                } catch (e) { console.log('Share failed', e); }
+            } else {
+                window.copyToClipboard(url);
+            }
+        };
+
+        window.copyToClipboard = (text) => {
+            navigator.clipboard.writeText(text).then(() => {
+                alert("An Kwafa Link!");
+            });
+        };
+
+        function showSellerPage(sellerName) {
+             const sellerProducts = products.filter(p => p.sellerName === sellerName);
+             if(sellerProducts.length === 0) return alert("Ba a sami mai siyarwar ba");
+             
+             const detailContent = document.getElementById('detail-content');
+             detailContent.innerHTML = `
+                <h2 class="text-2xl font-bold mb-4">Kayayyakin ${sellerName}</h2>
+                <div class="grid grid-cols-2 gap-4 pb-10">
+                    ${sellerProducts.map(p => createProductCard(p)).join('')}
+                </div>
+             `;
+             hideAllPages();
+             document.getElementById('detail-page-container').classList.remove('hidden');
+             window.scrollTo(0, 0);
+             if (typeof lucide !== 'undefined') lucide.createIcons();
+        }
+
+        async function submitReview(productId) {
+            const name = document.getElementById('review-name').value;
+            const comment = document.getElementById('review-comment').value;
+            const ratingEl = document.querySelector('input[name="rating"]:checked');
+            const rating = ratingEl ? parseInt(ratingEl.value) : 0;
+            if (!name || !comment || !rating) { alert("Cika duka"); return; }
+            try {
+                await fbUpdateDoc(fbDoc(db, `/artifacts/${appId}/public/data/products`, productId), { 
+                    reviews: fbArrayUnion({ name, comment, rating, date: new Date().toISOString() }) 
+                });
+                alert("An tura!");
+            } catch (e) { console.error(e); }
+        }
+
+        // --- UTILS ---
+        function getVerifiedBadge(isVerified) { return isVerified ? `<span class="verified-badge">✓</span>` : ''; }
+        function createStarRating(rating) { let stars = ''; const valid = Math.round(rating || 0); for (let i = 1; i <= 5; i++) { stars += `<i data-lucide="star" class="w-3.5 h-3.5 ${i <= valid ? 'text-yellow-400 fill-yellow-400' : 'text-gray-300'}"></i>`; } return `<div class="star-rating flex items-center space-x-0.5 mb-0.5">${stars}</div>`; }
+        function createStarRatingDisplay(rating) { const avg = (typeof rating === 'number' ? rating : 0).toFixed(1); return `<div class="flex items-center space-x-1 mt-0.5">${createStarRating(rating)}<span class="text-xs text-gray-500 font-medium">(${avg})</span></div>`; }
+        function calculateAverageRating(reviews) { if (!reviews || reviews.length === 0) return 0; return reviews.reduce((sum, r) => sum + (r.rating || 0), 0) / reviews.length; }
+
+        function closeFilterModal() { document.getElementById('filter-modal').classList.add('hidden'); }
+        function populateFilterOptions() { 
+            const markets = [...new Set(products.map(p => p.market).filter(m => m))].sort();
+            const container = document.getElementById('market-filter-options');
+            if (!container) return;
+            container.innerHTML = markets.length ? '' : `<p class="text-sm text-slate-500">Babu kasuwanni.</p>`;
+            markets.forEach(m => container.innerHTML += `<label class="flex items-center space-x-2 p-1 hover:bg-slate-100 rounded cursor-pointer"><input type="checkbox" class="market-checkbox h-4 w-4 rounded border-slate-300 text-green-600" value="${m}"><span class="text-slate-700 text-sm">${m}</span></label>`);
+        }
+
+        // --- PWA LOGIC ---
+        let deferredPrompt;
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            deferredPrompt = e;
+            if (!localStorage.getItem('pwaPromptClosed')) {
+                document.getElementById('pwa-install-prompt').classList.remove('hidden');
+            }
+        });
+
+        document.getElementById('install-pwa-btn')?.addEventListener('click', async () => {
+            if (deferredPrompt) {
+                deferredPrompt.prompt();
+                const { outcome } = await deferredPrompt.userChoice;
+                if (outcome === 'accepted') {
+                    document.getElementById('pwa-install-prompt').classList.add('hidden');
+                }
+                deferredPrompt = null;
+            }
+        });
+
+        document.getElementById('close-pwa-btn')?.addEventListener('click', () => {
+            document.getElementById('pwa-install-prompt').classList.add('hidden');
+            localStorage.setItem('pwaPromptClosed', 'true');
+        });
+
+        // --- VOICE SEARCH ---
+        function setupVoiceSearch() {
+            const voiceBtn = document.getElementById('voice-search-btn');
+            const searchInput = document.getElementById('search-bar');
+            if (!('webkitSpeechRecognition' in window) && !('SpeechRecognition' in window)) { voiceBtn.style.display = 'none'; return; }
+            const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+            const recognition = new SpeechRecognition();
+            recognition.lang = 'ha-NG'; 
+            recognition.continuous = false;
+            
+            voiceBtn.addEventListener('click', () => { try { recognition.start(); } catch(e) { recognition.stop(); } });
+            recognition.onstart = () => { voiceBtn.classList.add('mic-listening'); };
+            recognition.onend = () => { voiceBtn.classList.remove('mic-listening'); };
+            recognition.onresult = (event) => { 
+                searchInput.value = event.results[0][0].transcript; 
+                renderAllContent(); 
+                trackEvent('voice_search', { query: searchInput.value });
+            };
+        }
+
+        // Assign global functions
+        window.showProductDetail = showProductDetail;
+        window.showSellerPage = showSellerPage;
+        window.addToCart = addToCart;
+        window.toggleFavorite = toggleFavorite;
+        window.updateCartQuantity = updateCartQuantity;
+        window.editProduct = (id) => { const p = products.find(x => x.id === id); renderAdminForm(p); window.scrollTo(0,0); };
+        window.deleteProduct = async (id) => { if(confirm("Za ka goge?")) { await fbDeleteDoc(fbDoc(productsCollectionRef, id)); } };
+        window.closeFilterModal = closeFilterModal;
+        window.submitReview = submitReview;
+        window.saveSettings = saveSettings;
+        window.showHomePage = showHomePage;
+        window.showAboutPage = showAboutPage;
+        window.showContactPage = showContactPage;
+        window.showPrivacyPage = showPrivacyPage;
+        window.showTermsPage = showTermsPage;
+
+        // --- SETUP APPLICATION ---
+        async function setupApplication() {
+             // Assign Elements
+             langSwitcher = document.getElementById('lang-switcher');
+             searchBar = document.getElementById('search-bar');
+             homePage = document.getElementById('home-page');
+             favoritesPage = document.getElementById('favorites-page');
+             favoritesList = document.getElementById('favorites-list');
+             noFavoritesText = document.getElementById('no-favorites');
+             detailPageContainer = document.getElementById('detail-page-container');
+             detailContent = document.getElementById('detail-content');
+             adminPage = document.getElementById('admin-page');
+             dealSection = document.getElementById('deal-of-the-week-section');
+             dealProductContainer = document.getElementById('deal-of-the-week-product');
+             featuredContainer = document.getElementById('featured-products');
+             latestContainer = document.getElementById('latest-products');
+             featuredWrapper = document.getElementById('featured-section-wrapper');
+             latestWrapper = document.getElementById('latest-section-wrapper');
+             emptyState = document.getElementById('empty-state');
+             manageProductsList = document.getElementById('manage-products-list');
+             logo = document.getElementById('logo');
+             favoritesNavButton = document.getElementById('favorites-nav-button');
+             favCount = document.getElementById('fav-count');
+             backButton = document.getElementById('back-button');
+             backButtonFav = document.getElementById('back-button-fav');
+             backButtonAdmin = document.getElementById('back-button-admin');
+             backButtonCart = document.getElementById('back-button-cart');
+             categoryNav = document.getElementById('category-nav');
+             aiModal = document.getElementById('ai-modal');
+             modalContent = document.getElementById('modal-content');
+             copyModalBtn = document.getElementById('copy-modal-btn');
+             closeModalBtn = document.getElementById('close-modal-btn');
+             recentlyViewedSection = document.getElementById('recently-viewed-section');
+             recentlyViewedContainer = document.getElementById('recently-viewed-products');
+             filterBtn = document.getElementById('filter-btn');
+             filterModal = document.getElementById('filter-modal');
+             applyFiltersBtn = document.getElementById('apply-filters-btn');
+             clearFiltersBtn = document.getElementById('clear-filters-btn');
+             minPriceInput = document.getElementById('min-price');
+             maxPriceInput = document.getElementById('max-price');
+             marketFilterOptions = document.getElementById('market-filter-options');
+             connectionStatus = document.getElementById('connection-status');
+             userIdDisplay = document.getElementById('user-id-display');
+             closeFilterBtn = document.getElementById('close-filter-btn'); 
+             cartNavButton = document.getElementById('cart-nav-button');
+             cartCount = document.getElementById('cart-count');
+             cartPage = document.getElementById('cart-page');
+             backButtonCart = document.getElementById('back-button-cart');
+             cartItemsContainer = document.getElementById('cart-items-container');
+             cartSummary = document.getElementById('cart-summary');
+             cartTotalPrice = document.getElementById('cart-total-price');
+             noCartItemsEl = document.getElementById('no-cart-items');
+             sendOrderBtn = document.getElementById('send-whatsapp-order-btn');
+             voiceSearchBtn = document.getElementById('voice-search-btn');
+             adminWhatsappInput = document.getElementById('admin-whatsapp-input');
+             loginModal = document.getElementById('login-modal');
+             emailInput = document.getElementById('admin-email-input');
+             passInput = document.getElementById('admin-pass-input');
+             performLoginBtn = document.getElementById('perform-login-btn');
+             cancelLoginBtn = document.getElementById('cancel-login-btn');
+             openMenuBtn = document.getElementById('open-menu-btn');
+             closeMenuBtn = document.getElementById('close-menu-btn');
+             mobileMenuOverlay = document.getElementById('mobile-menu-overlay');
+             aboutPage = document.getElementById('about-page');
+             contactPage = document.getElementById('contact-page');
+             privacyPage = document.getElementById('privacy-page');
+             termsPage = document.getElementById('terms-page');
+             menuAdminBtn = document.getElementById('menu-admin-btn');
+             
+             // Event Listeners
+             window.addEventListener('online', updateConnectionStatus);
+             window.addEventListener('offline', updateConnectionStatus);
+             if (langSwitcher) langSwitcher.addEventListener('click', () => { currentLanguage = currentLanguage === 'ha' ? 'en' : 'ha'; localStorage.setItem('bataGsmLanguage_v3', currentLanguage); updateLanguage(); });
+             if (logo) logo.addEventListener('click', showHomePage);
+             if (favoritesNavButton) favoritesNavButton.addEventListener('click', showFavoritesPage);
+             if (cartNavButton) cartNavButton.addEventListener('click', showCartPage); 
+             if (backButton) backButton.addEventListener('click', showHomePage);
+             if (backButtonFav) backButtonFav.addEventListener('click', showHomePage);
+             if (backButtonAdmin) backButtonAdmin.addEventListener('click', showHomePage);
+             if (backButtonCart) backButtonCart.addEventListener('click', showHomePage);
+             if (sendOrderBtn) sendOrderBtn.addEventListener('click', sendWhatsAppOrder);
+             if (searchBar) searchBar.addEventListener('input', () => renderAllContent());
+             if (categoryNav) categoryNav.addEventListener('click', (e) => { if (e.target.tagName === 'BUTTON') { document.querySelectorAll('.category-btn').forEach(btn => { btn.classList.remove('bg-green-600', 'text-white', 'shadow'); btn.classList.add('bg-white', 'text-slate-700', 'border', 'border-slate-200'); }); e.target.classList.add('bg-green-600', 'text-white', 'shadow'); e.target.classList.remove('bg-white', 'text-slate-700', 'border', 'border-slate-200'); currentCategory = e.target.dataset.category; renderAllContent(); } });
+             if (filterBtn) filterBtn.addEventListener('click', () => { populateFilterOptions(); if(filterModal) filterModal.classList.remove('hidden'); });
+             if (applyFiltersBtn) applyFiltersBtn.addEventListener('click', () => { currentFilters.minPrice = parseFloat(document.getElementById('min-price').value); currentFilters.maxPrice = parseFloat(document.getElementById('max-price').value); currentFilters.markets = [...document.querySelectorAll('.market-checkbox:checked')].map(cb => cb.value); renderAllContent(); closeFilterModal(); });
+             if (clearFiltersBtn) clearFiltersBtn.addEventListener('click', () => { currentFilters = { minPrice: null, maxPrice: null, markets: [] }; document.getElementById('min-price').value = ''; document.getElementById('max-price').value = ''; document.querySelectorAll('.market-checkbox').forEach(cb => cb.checked = false); renderAllContent(); closeFilterModal(); });
+             if (closeFilterBtn) closeFilterBtn.addEventListener('click', closeFilterModal);
+             if (performLoginBtn) performLoginBtn.addEventListener('click', handleAdminLogin);
+             if (cancelLoginBtn) cancelLoginBtn.addEventListener('click', () => { loginModal.classList.add('hidden'); });
+             if (openMenuBtn) openMenuBtn.addEventListener('click', () => mobileMenuOverlay.classList.remove('hidden'));
+             if (closeMenuBtn) closeMenuBtn.addEventListener('click', () => mobileMenuOverlay.classList.add('hidden'));
+             if (menuAdminBtn) menuAdminBtn.addEventListener('click', showAdminPage);
+
+             setupVoiceSearch();
+
+            try {
+                 const firebaseConfig = {
+                  apiKey: "AIzaSyD6yFnfa_ZTgunNbYM7Eo-0nJY_TRssA30",
+                  authDomain: "bata-gsm-online.firebaseapp.com",
+                  projectId: "bata-gsm-online",
+                  storageBucket: "bata-gsm-online.firebasestorage.app",
+                  messagingSenderId: "459088648974",
+                  appId: "1:459088648974:web:143a9856926240f918955f",
+                  measurementId: "G-TRB5Q8RXYN"
+                };
+
+                 appId = 'bata-gsm-online';
+                 const app = fbInitializeApp(firebaseConfig);
+                 auth = fbGetAuth(app);
+                 db = fbGetFirestore(app);
+                 setFirestoreLogLevel('debug'); 
+                 try { await fbEnableMultiTabIndexedDbPersistence(db); } catch (err) {}
+                 
+                 if (!auth.currentUser) { await fbSignInAnonymously(auth); }
+                 
+                 fbOnAuthStateChanged(auth, async (user) => {
+                       if (user) {
+                           userId = user.uid;
+                           if (document.getElementById('user-id-display')) document.getElementById('user-id-display').textContent = `UserID: ${userId.substring(0, 8)}...`;
+                           
+                           user.getIdTokenResult().then((idTokenResult) => {
+                               if (!!idTokenResult.claims.admin || (user.email && user.email.includes('admin'))) {
+                                   isAdminAuthenticated = true;
+                                   if(menuAdminBtn) menuAdminBtn.classList.remove('hidden');
+                               }
+                           });
+
+                           productsCollectionRef = fbCollection(db, `/artifacts/${appId}/public/data/products`);
+                           await loadSettings(); 
+                           
+                           const q = fbQuery(productsCollectionRef, fbOrderBy("createdAt", "desc")); 
+                           unsubscribeProducts = fbOnSnapshot(q, (snapshot) => {
+                               isOffline = snapshot.metadata.fromCache; 
+                               updateConnectionStatus();
+                               const newProducts = [];
+                               snapshot.docs.forEach(doc => {
+                                    const data = doc.data();
+                                    if (data && data.name) {
+                                         newProducts.push({ id: doc.id, ...data, reviews: data.reviews || [] });
+                                    }
+                               });
+                               products = newProducts;
+                               isDataLoaded = true;
+                               renderAllContent(); 
+                               
+                               // Check for direct deep-link route after products load
+                               checkURLForDeepLink();
+                               
+                               if (adminPage && !adminPage.classList.contains('hidden')) { renderAdminProductList(); }
+                          });
+                       }
+                 });
+                 loadLocalData(); 
+                 updateLanguage();
+                 
+                 // --- SIRRIN ADMIN (SECRET 5 CLICKS) ---
+                 let secretClicks = 0;
+                 const sloganEl = document.querySelector('p[data-key="slogan"]'); 
+                 if (sloganEl) {
+                     sloganEl.style.cursor = 'pointer'; 
+                     sloganEl.style.userSelect = 'none';
+                     sloganEl.addEventListener('click', () => {
+                         secretClicks++;
+                         if (secretClicks >= 5) {
+                             document.getElementById('login-modal').classList.remove('hidden');
+                             if(document.getElementById('admin-email-input')) document.getElementById('admin-email-input').focus();
+                             secretClicks = 0; 
+                         }
+                         if(window.sloganResetTimer) clearTimeout(window.sloganResetTimer);
+                         window.sloganResetTimer = setTimeout(() => { secretClicks = 0; }, 2000);
+                     });
+                 }
+                 
+                 setTimeout(() => { hideLoading(); }, 2500); 
+
+            } catch (error) { 
+                hideLoading(); 
+                console.error(error); 
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', setupApplication);
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            let secretCount = 0;
+            const sloganElement = document.querySelector('p[data-key="slogan"]');
+            
+            if(sloganElement) {
+                sloganElement.style.userSelect = 'none'; 
+                sloganElement.style.cursor = 'pointer';
+                
+                sloganElement.addEventListener('click', (e) => {
+                    e.preventDefault(); 
+                    e.stopPropagation();
+                    secretCount++;
+                    if(secretCount >= 5) {
+                        const modal = document.getElementById('login-modal');
+                        if(modal) {
+                            modal.classList.remove('hidden');
+                            secretCount = 0;
+                        }
+                    }
+                    setTimeout(() => { secretCount = 0; }, 2000);
+                });
+            }
+        });
+    </script>
+<script>
+    if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+            navigator.serviceWorker.register('./sw.js')
+                .then(reg => console.log('Service Worker: An yi Register!', reg.scope))
+                .catch(err => console.log('Service Worker: Kuskure:', err));
+        });
+    }
+</script>
+</body>
+</html>
