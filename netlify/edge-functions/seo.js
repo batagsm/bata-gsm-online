@@ -27,10 +27,13 @@ export default async (request, context) => {
                             .replace(/-+$/, '');
 
         if (docSlug === slug) {
+          // Anan mun tabbatar ya duba dukkan wuraren da za a iya ajiye hoto a database din ka
+          const imgUrl = fields.imageLink?.stringValue || fields.image?.stringValue || fields.imageUrl?.stringValue || 'https://placehold.co/512x512/16a34a/ffffff?text=B';
+
           matchedProduct = {
             name: name,
             description: fields.description ? fields.description.stringValue : 'Bata GSM Online Marketplace',
-            image: fields.imageLink ? fields.imageLink.stringValue : 'https://placehold.co/512x512/16a34a/ffffff?text=B',
+            image: imgUrl,
             price: fields.price ? (fields.price.integerValue || fields.price.doubleValue || 0) : 0
           };
           break;
@@ -48,7 +51,6 @@ export default async (request, context) => {
       html = html.replace(/<meta\s+property="og:title"\s+content="[^"]*"/i, `<meta property="og:title" content="${newTitle}"`);
       html = html.replace(/<meta\s+property="og:description"\s+content="[^"]*"/i, `<meta property="og:description" content="${cleanDesc}"`);
       
-      // An gyara wannan sashin domin ya zama tsaf ba tare da barin wani harafi a waje ba
       const ogImageTag = `<meta property="og:image" content="${matchedProduct.image}">\n` +
                          `<meta property="og:image:width" content="1200">\n` +
                          `<meta property="og:image:height" content="630">\n` +
