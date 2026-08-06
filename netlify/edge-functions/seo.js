@@ -27,13 +27,10 @@ export default async (request, context) => {
                             .replace(/-+$/, '');
 
         if (docSlug === slug) {
-          // Anan mun tabbatar ya duba dukkan wuraren da za a iya ajiye hoto a database din ka
-          const imgUrl = fields.imageLink?.stringValue || fields.image?.stringValue || fields.imageUrl?.stringValue || 'https://placehold.co/512x512/16a34a/ffffff?text=B';
-
           matchedProduct = {
             name: name,
             description: fields.description ? fields.description.stringValue : 'Bata GSM Online Marketplace',
-            image: imgUrl,
+            image: fields.imageLink ? fields.imageLink.stringValue : 'https://placehold.co/512x512/16a34a/ffffff?text=B',
             price: fields.price ? (fields.price.integerValue || fields.price.doubleValue || 0) : 0
           };
           break;
@@ -50,13 +47,7 @@ export default async (request, context) => {
       html = html.replace(/<meta\s+name="description"\s+content="[^"]*"/i, `<meta name="description" content="${cleanDesc}"`);
       html = html.replace(/<meta\s+property="og:title"\s+content="[^"]*"/i, `<meta property="og:title" content="${newTitle}"`);
       html = html.replace(/<meta\s+property="og:description"\s+content="[^"]*"/i, `<meta property="og:description" content="${cleanDesc}"`);
-      
-      const ogImageTag = `<meta property="og:image" content="${matchedProduct.image}">\n` +
-                         `<meta property="og:image:width" content="1200">\n` +
-                         `<meta property="og:image:height" content="630">\n` +
-                         `<meta name="twitter:card" content="summary_large_image">`;
-      html = html.replace(/<meta\s+property="og:image"\s+content="[^"]*"\s*\/?>/i, ogImageTag);
-
+      html = html.replace(/<meta\s+property="og:image"\s+content="[^"]*"/i, `<meta property="og:image" content="${matchedProduct.image}"`);
       html = html.replace(/<meta\s+property="og:url"\s+content="[^"]*"/i, `<meta property="og:url" content="https://www.batagsm.com.ng/product/${slug}"`);
     }
 
